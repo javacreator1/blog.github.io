@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="数据切分 关系型数据库本身比较容易成为系统瓶颈，单机存储容量、连接数、处理能力都有限。  当单表的数据量达到1000W或100G以后，由于查询维度较多，即使添加从库、优化索引，做很多操作时性能仍下降严重。此时就要考虑对其进行切分了，切分的目的就在于减少数据库的负担，缩短查询时间。  数据库分布式核心内容无非就是数据切分（Sharding），以及切分后对数据的定位、整合。  数据切分就是将数据分散存">
+<meta name="keywords" content="分表,分库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库分库分表">
+<meta property="og:url" content="https://github.com/javacreator1/blog/2018/09/13/数据库分库分表/index.html">
+<meta property="og:site_name" content="java blog">
+<meta property="og:description" content="数据切分 关系型数据库本身比较容易成为系统瓶颈，单机存储容量、连接数、处理能力都有限。  当单表的数据量达到1000W或100G以后，由于查询维度较多，即使添加从库、优化索引，做很多操作时性能仍下降严重。此时就要考虑对其进行切分了，切分的目的就在于减少数据库的负担，缩短查询时间。  数据库分布式核心内容无非就是数据切分（Sharding），以及切分后对数据的定位、整合。  数据切分就是将数据分散存">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/images/db_fenku_fenbiao_one.png">
+<meta property="og:image" content="https://github.com/images/db_fenku_fenbiao_two.png">
+<meta property="og:image" content="https://github.com/images/db_fenku_fenbiao_three.png">
+<meta property="og:image" content="https://github.com/images/db_fenku_fenbiao_four.png">
+<meta property="og:image" content="https://github.com/images/db_fenku_fenbiao_five.png">
+<meta property="og:updated_time" content="2019-04-26T07:18:11.850Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库分库分表">
+<meta name="twitter:description" content="数据切分 关系型数据库本身比较容易成为系统瓶颈，单机存储容量、连接数、处理能力都有限。  当单表的数据量达到1000W或100G以后，由于查询维度较多，即使添加从库、优化索引，做很多操作时性能仍下降严重。此时就要考虑对其进行切分了，切分的目的就在于减少数据库的负担，缩短查询时间。  数据库分布式核心内容无非就是数据切分（Sharding），以及切分后对数据的定位、整合。  数据切分就是将数据分散存">
+<meta name="twitter:image" content="https://github.com/images/db_fenku_fenbiao_one.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://github.com/javacreator1/blog/2018/09/13/数据库分库分表/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据库分库分表 | java blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/javacreator1"><img style="position:absolute;top:0;right:0;border:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">java blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/javacreator1/blog/blog/2018/09/13/数据库分库分表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库分库分表
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-13 16:44:51" itemprop="dateCreated datePublished" datetime="2018-09-13T16:44:51+08:00">2018-09-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-26 15:18:11" itemprop="dateModified" datetime="2019-04-26T15:18:11+08:00">2019-04-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="数据切分"><a href="#数据切分" class="headerlink" title="数据切分"></a>数据切分</h3><ul>
+<li><p><u><strong>关系型数据库</strong></u>本身比较容易成为<u><strong>系统瓶颈</strong></u>，<u><strong>单机存储容量</strong></u>、<u><strong>连接数</strong></u>、<u><strong>处理能力</strong></u>都有限。</p>
+</li>
+<li><p>当单表的<u><strong>数据量达到1000W或100G</strong></u>以后，由于<u><strong>查询维度</strong></u>较多，即使<u><strong>添加从库</strong></u>、<u><strong>优化索引</strong></u>，做很多操作时<u><strong>性能仍下降严重</strong></u>。此时就要考虑对其进行<u><strong>切分</strong></u>了，<u><strong>切分</strong></u>的目的就在于<u><strong>减少数据库的负担</strong></u>，<u><strong>缩短</strong></u>查询时间。</p>
+</li>
+<li><p><u><strong>数据库分布式核心内容</strong></u>无非就是<u><strong>数据切分</strong></u>（Sharding），以及<u><strong>切分后对数据的定位、整合</strong></u>。</p>
+</li>
+<li><p><u><strong>数据切分</strong></u>就是<u><strong>将数据分散存储到多个数据库中</strong></u>，使得单一<u><strong>数据库</strong></u>中的<u><strong>数据量</strong></u>变小，通过<u><strong>扩充主机的数量</strong></u>缓解<u><strong>单一数据库的性能问题</strong></u>，从而达到<u><strong>提升数据库操作性能</strong></u>的目的。</p>
+</li>
+</ul>
+<p><u><strong>数据切分</strong></u>根据其<u><strong>切分类型</strong></u>，可以分为两种方式：<u><strong>垂直（纵向）切分</strong></u>和<u><strong>水平（横向）切分</strong></u>。</p>
+<h4 id="垂直（纵向）切分"><a href="#垂直（纵向）切分" class="headerlink" title="垂直（纵向）切分"></a>垂直（纵向）切分</h4><p><u><strong>垂直切分</strong></u>常见有<u><strong>垂直分库</strong></u>和<u><strong>垂直分表</strong></u>两种。</p>
+<h5 id="垂直分库"><a href="#垂直分库" class="headerlink" title="垂直分库"></a>垂直分库</h5><ul>
+<li><p><u><strong>垂直分库</strong></u>就是根据<u><strong>业务耦合性</strong></u>，将<u><strong>关联度低</strong></u>的<u><strong>不同表</strong></u>存储在不同的<u><strong>数据库</strong></u>。</p>
+</li>
+<li><p>做法与<u><strong>大系统拆分</strong></u>为多个<u><strong>小系统</strong></u>类似，按<u><strong>业务分类</strong></u>进行<u><strong>独立划分</strong></u>。</p>
+</li>
+</ul>
+<p>与”<u><strong>微服务治理</strong></u>“的做法相似，<u><strong>每个微服务使用单独的一个数据库</strong></u>。如图：<br><img src="/images/db_fenku_fenbiao_one.png" alt></p>
+<h5 id="垂直分表"><a href="#垂直分表" class="headerlink" title="垂直分表"></a>垂直分表</h5><ul>
+<li><p><u><strong>垂直分表</strong></u>是基于<u><strong>数据库</strong></u>中的”<u><strong>列</strong></u>“进行，某个表<u><strong>字段</strong></u>较多，可以新建一张<u><strong>扩展表</strong></u>，将<u><strong>不经常用</strong></u>或<u><strong>字段长度较大</strong></u>的<u><strong>字段</strong></u>拆分出去到<u><strong>扩展表</strong></u>中。</p>
+</li>
+<li><p>在<u><strong>字段</strong></u>很多的情况下（例如<u><strong>一个大表有100多个字段</strong></u>），通过”<u><strong>大表拆小表</strong></u>“，更便于开发与维护，也能<u><strong>避免跨页</strong></u>问题，<u><strong>MySQL底层</strong></u>是通过<u><strong>数据页</strong></u>存储的，<u><strong>一条记录</strong></u>占用空间过大会导致<u><strong>跨页</strong></u>，造成额外的<u><strong>性能开销</strong></u>。</p>
+</li>
+<li><p>另外<u><strong>数据库</strong></u>以<u><strong>行</strong></u>为<u><strong>单位</strong></u>将<u><strong>数据</strong></u>加载到<u><strong>内存</strong></u>中，这样表中<u><strong>字段长度较短</strong></u>且<u><strong>访问频率较高</strong></u>，<u><strong>内存</strong></u>能加载更多的<u><strong>数据</strong></u>，<u><strong>命中率更高</strong></u>，<u><strong>减少了磁盘IO</strong></u>，从而<u><strong>提升了数据库性能</strong></u>。</p>
+</li>
+</ul>
+<p><img src="/images/db_fenku_fenbiao_two.png" alt></p>
+<h5 id="垂直切分的优点"><a href="#垂直切分的优点" class="headerlink" title="垂直切分的优点"></a>垂直切分的优点</h5><ol>
+<li><p>解决<u><strong>业务系统</strong></u>层面的<u><strong>耦合</strong></u>，<u><strong>业务清晰</strong></u>。</p>
+</li>
+<li><p>与<u><strong>微服务的治理</strong></u>类似，也能对<u><strong>不同业务的数据</strong></u>进行<u><strong>分级管理</strong></u>、<u><strong>维护</strong></u>、<u><strong>监控</strong></u>、<u><strong>扩展</strong></u>等。</p>
+</li>
+<li><p><u><strong>高并发</strong></u>场景下，<u><strong>垂直切分</strong></u>一定程度的<u><strong>提升IO</strong></u>、<u><strong>数据库连接数</strong></u>、<u><strong>单机硬件资源的瓶颈</strong></u>。</p>
+</li>
+</ol>
+<hr>
+<h5 id="垂直切分的缺点"><a href="#垂直切分的缺点" class="headerlink" title="垂直切分的缺点"></a>垂直切分的缺点</h5><ol>
+<li><p><u><strong>部分表</strong></u>无法<u><strong>join</strong></u>，只能通过<u><strong>接口聚合</strong></u>方式解决，提升了<u><strong>开发的复杂度</strong></u></p>
+</li>
+<li><p><u><strong>分布式事务</strong></u>处理复杂</p>
+</li>
+<li><p>依然存在<u><strong>单表数据量过大</strong></u>的问题（需要<u><strong>水平切分</strong></u>）。 </p>
+</li>
+</ol>
+<h4 id="水平（横向）切分"><a href="#水平（横向）切分" class="headerlink" title="水平（横向）切分"></a>水平（横向）切分</h4><ul>
+<li><p>当一个<u><strong>应用</strong></u>难以再<u><strong>细粒度</strong></u>的<u><strong>垂直切分</strong></u>，或切分后<u><strong>数据量行数</strong></u>巨大，存在<u><strong>单库读写</strong></u>、<u><strong>存储性能瓶颈</strong></u>，这时候就需要进行<u><strong>水平切分</strong></u>了。</p>
+</li>
+<li><p><u><strong>水平切分</strong></u>分为<u><strong>库内分表</strong></u>和<u><strong>分库分表</strong></u>，是根据<u><strong>表内数据</strong></u>内在的<u><strong>逻辑关系</strong></u>，将同一个表<u><strong>按不同的条件</strong></u>分散到多个<u><strong>数据库</strong></u>或多个<u><strong>表</strong></u>中，每个<u><strong>表</strong></u>中只包含<u><strong>一部分数据</strong></u>，从而使得<u><strong>单个表</strong></u>的<u><strong>数据量</strong></u>变小，达到<u><strong>分布式</strong></u>的效果。如图所示：</p>
+</li>
+</ul>
+<p><img src="/images/db_fenku_fenbiao_three.png" alt></p>
+<ul>
+<li><u><strong>库内分表</strong></u>只解决了<u><strong>单一表数据量过大</strong></u>的问题，但没有将<u><strong>表</strong></u>分布到<u><strong>不同机器的库</strong></u>上，因此对于<u><strong>减轻MySQL数据库的压力</strong></u>来说，帮助不是很大，大家还是竞争<u><strong>同一个物理机</strong></u>的<u><strong>CPU</strong></u>、<u><strong>内存</strong></u>、<u><strong>网络IO</strong></u>，最好通过<u><strong>分库分表</strong></u>来解决。</li>
+</ul>
+<h5 id="水平切分的优点"><a href="#水平切分的优点" class="headerlink" title="水平切分的优点"></a>水平切分的优点</h5><ol>
+<li>不存在<u><strong>单库数据量过大</strong></u>、<u><strong>高并发的性能瓶颈</strong></u>，<u><strong>提升系统稳定性和负载能力</strong></u>。</li>
+<li><u><strong>应用端改造较小</strong></u>，<u><strong>不需要拆分业务模块</strong></u>。</li>
+</ol>
+<h5 id="水平切分的缺点"><a href="#水平切分的缺点" class="headerlink" title="水平切分的缺点"></a>水平切分的缺点</h5><ol>
+<li><p><u><strong>跨分片的事务一致性</strong></u>难以保证</p>
+</li>
+<li><p><u><strong>跨库的join关联查询性能</strong></u>较差</p>
+</li>
+<li><p><u><strong>数据多次扩展难度和维护量</strong></u>极大</p>
+</li>
+</ol>
+<h5 id="数据分片规则"><a href="#数据分片规则" class="headerlink" title="数据分片规则"></a>数据分片规则</h5><p><u><strong>水平切分</strong></u>后<u><strong>同一张表</strong></u>会出现在<u><strong>多个数据库/表</strong></u>中，<u><strong>每个库/表</strong></u>的内容不同。几种典型的<u><strong>数据分片规则</strong></u>为：</p>
+<h6 id="根据数值范围"><a href="#根据数值范围" class="headerlink" title="根据数值范围"></a>根据数值范围</h6><ul>
+<li>某种意义上，某些<u><strong>系统</strong></u>中使用的”<u><strong>冷热数据分离</strong></u>“，将一些<u><strong>使用较少</strong></u>的<u><strong>历史数据</strong></u>迁移到<u><strong>其他库</strong></u>中，<u><strong>业务功能上</strong></u>只提供<u><strong>热点数据的查询</strong></u>，也是类似的实践。</li>
+<li>按照<u><strong>时间区间</strong></u>或<u><strong>ID区间</strong></u>来切分。</li>
+</ul>
+<p><u><strong>日期</strong></u>：<u><strong>按日期将不同月甚至是日的数据分散到不同的库中</strong></u>；</p>
+<p><u><strong>ID</strong></u>：<u><strong>将userId为1~9999的记录分到第一个库，10000~20000的分到第二个库，以此类推</strong></u>。</p>
+<p><strong>优点</strong></p>
+<ol>
+<li><p><u><strong>单表大小</strong></u>可控。</p>
+</li>
+<li><p>天然便于<u><strong>水平扩展</strong></u>，后期如果想<u><strong>对整个分片集群扩容</strong></u>时，只需要<u><strong>添加节点</strong></u>即可，无需<u><strong>对其他分片的数据进行迁移</strong></u>。</p>
+</li>
+<li><p>使用<u><strong>分片字段</strong></u>进行<u><strong>范围查找</strong></u>时，<u><strong>连续分片</strong></u>可<u><strong>快速定位分片</strong></u>进行<u><strong>快速查询</strong></u>，有效<u><strong>避免跨分片查询的问题</strong></u>。</p>
+</li>
+</ol>
+<p><strong>缺点</strong></p>
+<ol>
+<li><p><u><strong>热点数据</strong></u>成为<u><strong>性能瓶颈</strong></u>。</p>
+</li>
+<li><p><u><strong>连续分片</strong></u>可能存在<u><strong>数据热点</strong></u>，例如按时间<u><strong>字段分片</strong></u>，<u><strong>有些分片存储最近时间段内的数据</strong></u>，<u><strong>可能会被频繁的读写</strong></u>，<u><strong>而有些分片存储的历史数据，则很少被查询</strong></u>。<br><img src="/images/db_fenku_fenbiao_four.png" alt></p>
+</li>
+</ol>
+<h6 id="根据数值取模"><a href="#根据数值取模" class="headerlink" title="根据数值取模"></a>根据数值取模</h6><p>一般采用<u><strong>hash取模</strong></u>mod的<u><strong>切分方式</strong></u>，例如：<u><strong>将 Customer 表根据 cusno 字段切分到4个库中，余数为0的放到第一个库，余数为1的放到第二个库，以此类推</strong></u>。这样<u><strong>同一个用户的数据</strong></u>会分散到<u><strong>同一个库</strong></u>中，如果<u><strong>查询条件</strong></u>带有cusno字段，<u><strong>则可明确定位到相应库去查询</strong></u>。</p>
+<p><strong>优点</strong></p>
+<ol>
+<li><u><strong>数据分片</strong></u>相对比较<u><strong>均匀</strong></u>，不容易出现<u><strong>热点</strong></u>和<u><strong>并发访问</strong></u>的瓶颈。</li>
+</ol>
+<p><strong>缺点</strong></p>
+<ol>
+<li><p><u><strong>后期分片集群扩容时，需要迁移旧的数据</strong></u>（使用一致性hash算法能较好的避免这个问题）。</p>
+</li>
+<li><p>容易面临<u><strong>跨分片查询</strong></u>的复杂问题。比如上例中，如果<u><strong>频繁用到的查询条件</strong></u>中不带cusno时，将会导致<u><strong>无法定位数据库</strong></u>，<u><strong>从而需要同时向4个库发起查询，再在内存中合并数据，取最小集返回给应用，分库反而成为拖累</strong></u>。</p>
+</li>
+</ol>
+<p><img src="/images/db_fenku_fenbiao_five.png" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/分表/" rel="tag"># 分表</a>
+          
+            <a href="/blog/tags/分库/" rel="tag"># 分库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/09/13/HTTP/" rel="next" title="HTTP">
+                <i class="fa fa-chevron-left"></i> HTTP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/09/15/正则表达式/" rel="prev" title="正则表达式">
+                正则表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/blog/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/blog/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据切分"><span class="nav-number">1.</span> <span class="nav-text">数据切分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#垂直（纵向）切分"><span class="nav-number">1.1.</span> <span class="nav-text">垂直（纵向）切分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#垂直分库"><span class="nav-number">1.1.1.</span> <span class="nav-text">垂直分库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#垂直分表"><span class="nav-number">1.1.2.</span> <span class="nav-text">垂直分表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#垂直切分的优点"><span class="nav-number">1.1.3.</span> <span class="nav-text">垂直切分的优点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#垂直切分的缺点"><span class="nav-number">1.1.4.</span> <span class="nav-text">垂直切分的缺点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#水平（横向）切分"><span class="nav-number">1.2.</span> <span class="nav-text">水平（横向）切分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#水平切分的优点"><span class="nav-number">1.2.1.</span> <span class="nav-text">水平切分的优点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#水平切分的缺点"><span class="nav-number">1.2.2.</span> <span class="nav-text">水平切分的缺点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据分片规则"><span class="nav-number">1.2.3.</span> <span class="nav-text">数据分片规则</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#根据数值范围"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">根据数值范围</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#根据数值取模"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">根据数值取模</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/blog/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/blog/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/blog/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/blog/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/blog/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
