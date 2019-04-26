@@ -100,44 +100,44 @@
 <meta name="keywords" content="计算机网络,链路层">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链路层">
-<meta property="og:url" content="https://github.com/javacreator1/blog/2017/09/01/链路层/index.html">
+<meta property="og:url" content="https://javacreator1.github.io/blog/2017/09/01/链路层/index.html">
 <meta property="og:site_name" content="java blog">
 <meta property="og:description" content="基本问题1. 封装成帧将网络层传下来的分组添加首部和尾部，用于标记帧的开始和结束。  2. 透明传输透明表示一个实际存在的事物看起来好像不存在一样。 帧使用首部和尾部进行定界，如果帧的数据部分含有和首部尾部相同的内容，那么帧的开始和结束位置就会被错误的判定。需要在数据部分出现首部尾部相同的内容前面插入转义字符。如果数据部分出现转义字符，那么就在转义字符前面再加个转义字符。在接收端进行处理之后可以还">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/images/lianlu_one.png">
-<meta property="og:image" content="https://github.com/images/lianlu_two.png">
-<meta property="og:image" content="https://github.com/images/lianlu_three.png">
-<meta property="og:image" content="https://github.com/images/lianlu_four.png">
-<meta property="og:image" content="https://github.com/images/lianlu_five.png">
-<meta property="og:image" content="https://github.com/images/lianlu_six.png">
-<meta property="og:image" content="https://github.com/images/lianlu_seven.png">
-<meta property="og:image" content="https://github.com/images/lianlu_eight.png">
-<meta property="og:image" content="https://github.com/images/lianlu_insert_one.png">
-<meta property="og:image" content="https://github.com/images/lianlu_nine.png">
-<meta property="og:image" content="https://github.com/images/lianlu_ten.png">
-<meta property="og:image" content="https://github.com/images/lianlu_eleven.png">
-<meta property="og:image" content="https://github.com/images/lianlu_twelve.png">
-<meta property="og:image" content="https://github.com/images/lianlu_thirteen.png">
-<meta property="og:image" content="https://github.com/images/lianlu_fourteen.png">
-<meta property="og:image" content="https://github.com/images/lianlu_fiveteen.png">
-<meta property="og:image" content="https://github.com/images/lianlu_sixteen.png">
-<meta property="og:image" content="https://github.com/images/lianlu_seventeen.png">
-<meta property="og:image" content="https://github.com/images/lianlu_eighteen.png">
-<meta property="og:image" content="https://github.com/images/lianlu_nineteen.png">
-<meta property="og:image" content="https://github.com/images/lianlu_twenty.png">
-<meta property="og:image" content="https://github.com/images/lianlu_twenty_one.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_one.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_two.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_three.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_four.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_five.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_six.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_seven.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_eight.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_insert_one.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_nine.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_ten.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_eleven.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_twelve.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_thirteen.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_fourteen.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_fiveteen.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_sixteen.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_seventeen.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_eighteen.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_nineteen.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_twenty.png">
+<meta property="og:image" content="https://javacreator1.github.io/images/lianlu_twenty_one.png">
 <meta property="og:updated_time" content="2019-04-26T07:10:29.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="链路层">
 <meta name="twitter:description" content="基本问题1. 封装成帧将网络层传下来的分组添加首部和尾部，用于标记帧的开始和结束。  2. 透明传输透明表示一个实际存在的事物看起来好像不存在一样。 帧使用首部和尾部进行定界，如果帧的数据部分含有和首部尾部相同的内容，那么帧的开始和结束位置就会被错误的判定。需要在数据部分出现首部尾部相同的内容前面插入转义字符。如果数据部分出现转义字符，那么就在转义字符前面再加个转义字符。在接收端进行处理之后可以还">
-<meta name="twitter:image" content="https://github.com/images/lianlu_one.png">
+<meta name="twitter:image" content="https://javacreator1.github.io/images/lianlu_one.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://github.com/javacreator1/blog/2017/09/01/链路层/">
+  <link rel="canonical" href="https://javacreator1.github.io/blog/2017/09/01/链路层/">
 
 
 
@@ -376,7 +376,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/javacreator1/blog/blog/2017/09/01/链路层/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/blog/blog/2017/09/01/链路层/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
