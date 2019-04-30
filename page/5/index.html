@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/19/JavaIO/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/03/16/Mybatis分页/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -369,7 +369,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/19/JavaIO/" class="post-title-link" itemprop="url">JavaIO</a>
+                <a href="/2018/03/16/Mybatis分页/" class="post-title-link" itemprop="url">Mybatis分页</a>
               
             
           </h1>
@@ -394,7 +394,7 @@
                 
               
 
-              <time title="创建时间：2018-01-19 18:32:23" itemprop="dateCreated datePublished" datetime="2018-01-19T18:32:23+08:00">2018-01-19</time>
+              <time title="创建时间：2018-03-16 12:35:38" itemprop="dateCreated datePublished" datetime="2018-03-16T12:35:38+08:00">2018-03-16</time>
             
 
             
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:26:37" itemprop="dateModified" datetime="2019-04-26T15:26:37+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-30 13:01:07" itemprop="dateModified" datetime="2019-04-30T13:01:07+08:00">2019-04-30</time>
               
             
           </span>
@@ -428,7 +428,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
 
                 
                 
@@ -466,22 +466,13 @@
         
           
             <p>
-              一、概览Java 的 I/O 大概可以分成以下几类：
-
-磁盘操作：File
-字节操作：InputStream 和 OutputStream
-字符操作：Reader 和 Writer
-对象操作：Serializable
-网络操作：Socket
-新的输入/输出：NIO
-
-二、磁盘操作File 类可以用于
+              实现 Mybatis 分页上一篇文章里已经讲到了 Mybatis与 Spring MVC 的集成，并且做了一个列表展示，显示出所有 article 列表，但没有用到分页，在实际的项目中，分页是肯定需要的。而且是物理分页，不是内存分页。对于物理分页方案，不同的数据库，有不同的实现方法,对于 Mysql
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/19/JavaIO/#more" rel="contents">
+              <a class="btn" href="/2018/03/16/Mybatis分页/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -541,7 +532,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/15/AOP/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/03/15/Mybatis与SpringMVC集成/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -561,7 +552,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/15/AOP/" class="post-title-link" itemprop="url">AOP</a>
+                <a href="/2018/03/15/Mybatis与SpringMVC集成/" class="post-title-link" itemprop="url">Mybatis与SpringMVC集成</a>
               
             
           </h1>
@@ -586,7 +577,7 @@
                 
               
 
-              <time title="创建时间：2018-01-15 16:34:08" itemprop="dateCreated datePublished" datetime="2018-01-15T16:34:08+08:00">2018-01-15</time>
+              <time title="创建时间：2018-03-15 12:28:10" itemprop="dateCreated datePublished" datetime="2018-03-15T12:28:10+08:00">2018-03-15</time>
             
 
             
@@ -603,11 +594,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-28 16:37:36" itemprop="dateModified" datetime="2019-04-28T16:37:36+08:00">2019-04-28</time>
+                <time title="修改时间：2019-04-30 12:59:33" itemprop="dateModified" datetime="2019-04-30T12:59:33+08:00">2019-04-30</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -640,17 +649,13 @@
         
           
             <p>
-              AOP概念AOP(Aspect-Oriented Programming)是面向切面编程的简称，定义如下：
-
-计算机科学中,AOP是一种编程范式，通过分离横切关注点点来增加模块性。它可以在已有的代码上增加额外的行为，却不需要修改已有的代码，而是通过指定代码的切点来实现。
-
-JoinPoint(连接点
+              Mybatis 与 Spring3 MVC 集成例子前面几篇文章已经讲到了 Mybatis 与 Mpring 的集成。但这个时候，所有的工程还不是 Web 工程，虽然我一直是创建的 Web 工程。今天将直接用 Mybatis与Spring mvc 的方式集成起来，源码在本文结尾处下载。主要有以下几个
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/15/AOP/#more" rel="contents">
+              <a class="btn" href="/2018/03/15/Mybatis与SpringMVC集成/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -710,7 +715,7 @@ JoinPoint(连接点
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/13/Spring注解/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/03/13/Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -730,7 +735,7 @@ JoinPoint(连接点
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/13/Spring注解/" class="post-title-link" itemprop="url">Spring注解</a>
+                <a href="/2018/03/13/Linux/" class="post-title-link" itemprop="url">Linux</a>
               
             
           </h1>
@@ -755,7 +760,7 @@ JoinPoint(连接点
                 
               
 
-              <time title="创建时间：2018-01-13 16:09:00" itemprop="dateCreated datePublished" datetime="2018-01-13T16:09:00+08:00">2018-01-13</time>
+              <time title="创建时间：2018-03-13 18:49:14" itemprop="dateCreated datePublished" datetime="2018-03-13T18:49:14+08:00">2018-03-13</time>
             
 
             
@@ -772,7 +777,7 @@ JoinPoint(连接点
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-30 11:33:53" itemprop="dateModified" datetime="2019-04-30T11:33:53+08:00">2019-04-30</time>
+                <time title="修改时间：2019-04-26 15:34:08" itemprop="dateModified" datetime="2019-04-26T15:34:08+08:00">2019-04-26</time>
               
             
           </span>
@@ -789,7 +794,7 @@ JoinPoint(连接点
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
 
                 
                 
@@ -827,25 +832,20 @@ JoinPoint(连接点
         
           
             <p>
-              Spring中注解大全和应用
+              一、常用操作以及概念快捷键
+Tab：命令和文件名补全；
+Ctrl+C：中断正在运行的程序；
+Ctrl+D：结束键盘输入（End Of File，EOF）
 
-@Controller
-@RestController：
-@Service
-@Autowired
-@RequestMapping
-@RequestParam
-@ModelAttribute
-@Cacheable
-@CacheEvict
-@Resource
-@PostC
+求助1. –help指令的基本用法与选项介绍。
+2. manman 是 manual 的缩写，将指令的具体信息显示出来。
+当执行 man dat
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/13/Spring注解/#more" rel="contents">
+              <a class="btn" href="/2018/03/13/Linux/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -905,7 +905,7 @@ JoinPoint(连接点
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/13/事务隔离级别/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/03/13/Mybatis与Spring集成/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -925,7 +925,7 @@ JoinPoint(连接点
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/13/事务隔离级别/" class="post-title-link" itemprop="url">事务隔离级别</a>
+                <a href="/2018/03/13/Mybatis与Spring集成/" class="post-title-link" itemprop="url">Mybatis与Spring集成</a>
               
             
           </h1>
@@ -950,7 +950,7 @@ JoinPoint(连接点
                 
               
 
-              <time title="创建时间：2018-01-13 12:53:36" itemprop="dateCreated datePublished" datetime="2018-01-13T12:53:36+08:00">2018-01-13</time>
+              <time title="创建时间：2018-03-13 12:22:44" itemprop="dateCreated datePublished" datetime="2018-03-13T12:22:44+08:00">2018-03-13</time>
             
 
             
@@ -967,7 +967,7 @@ JoinPoint(连接点
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:23:38" itemprop="dateModified" datetime="2019-04-26T15:23:38+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-30 12:57:07" itemprop="dateModified" datetime="2019-04-30T12:57:07+08:00">2019-04-30</time>
               
             
           </span>
@@ -984,7 +984,7 @@ JoinPoint(连接点
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
 
                 
                 
@@ -1022,27 +1022,13 @@ JoinPoint(连接点
         
           
             <p>
-              
-为了解决多个事务并发引起的问题，进行并发控制。数据库系统提供了四种事务隔离级别供用户选择。
-
-第一类丢失更新定义：A事务撤销时，把已经提交的B事务的更新数据覆盖了。
-第二类丢失更新A事务提交时，把已经提交的B事务的更新数据覆盖了。
-
-
-
-名称
-内容
-
-
-
-
-读未提交（Read Uncommitte
+              Mybatis 与 Spring3 集成在这一系列文章中，前面讲到纯粹用 Mybatis 连接数据库，然后 进行增删改查，以及多表联合查询的的例子，但实际项目中，通常会用 Spring 这个沾合剂来管理 datasource 等。充分利用 Spring 基于接口的编程，以及aop ,ioc 带来的方
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/13/事务隔离级别/#more" rel="contents">
+              <a class="btn" href="/2018/03/13/Mybatis与Spring集成/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1102,7 +1088,7 @@ JoinPoint(连接点
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/11/ER图/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/03/05/Mybatis关联数据查询/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1122,7 +1108,7 @@ JoinPoint(连接点
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/11/ER图/" class="post-title-link" itemprop="url">ER图</a>
+                <a href="/2018/03/05/Mybatis关联数据查询/" class="post-title-link" itemprop="url">Mybatis关联数据查询</a>
               
             
           </h1>
@@ -1147,7 +1133,7 @@ JoinPoint(连接点
                 
               
 
-              <time title="创建时间：2018-01-11 17:34:10" itemprop="dateCreated datePublished" datetime="2018-01-11T17:34:10+08:00">2018-01-11</time>
+              <time title="创建时间：2018-03-05 12:16:53" itemprop="dateCreated datePublished" datetime="2018-03-05T12:16:53+08:00">2018-03-05</time>
             
 
             
@@ -1164,7 +1150,7 @@ JoinPoint(连接点
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:27:12" itemprop="dateModified" datetime="2019-04-26T15:27:12+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-30 12:56:07" itemprop="dateModified" datetime="2019-04-30T12:56:07+08:00">2019-04-30</time>
               
             
           </span>
@@ -1181,7 +1167,7 @@ JoinPoint(连接点
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
 
                 
                 
@@ -1219,40 +1205,14 @@ JoinPoint(连接点
         
           
             <p>
-              
-本篇博客介绍ER图的相关内容
-
-ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，提供了表示实体类型、属性和联系的方法，用来描述现实世界的概念模型。
-
-
-
-
-符号
-表示类型
-
-
-
-
-矩形框
-实体
-
-
-椭圆图框
-属性
-
-
-菱形框
-联系
-
-
-
-用“矩形
+              实现关联数据的查询有了前面几章的基础，对一些简单的应用是可以处理的，但在实际项目中，经常是关联表的查询，比如最常见到的多对一，一对多等。这些查询是如何处理的呢，这一讲就讲这个问题。我们首先创建一个 Article 这个表，并初始化数据。
+Drop TABLE IF EXISTS `article`;
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/11/ER图/#more" rel="contents">
+              <a class="btn" href="/2018/03/05/Mybatis关联数据查询/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1312,7 +1272,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/11/DI/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/03/03/Mybatis增删改查/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1332,7 +1292,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/11/DI/" class="post-title-link" itemprop="url">DI</a>
+                <a href="/2018/03/03/Mybatis增删改查/" class="post-title-link" itemprop="url">Mybatis增删改查</a>
               
             
           </h1>
@@ -1357,7 +1317,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
                 
               
 
-              <time title="创建时间：2018-01-11 16:28:49" itemprop="dateCreated datePublished" datetime="2018-01-11T16:28:49+08:00">2018-01-11</time>
+              <time title="创建时间：2018-03-03 12:14:25" itemprop="dateCreated datePublished" datetime="2018-03-03T12:14:25+08:00">2018-03-03</time>
             
 
             
@@ -1374,7 +1334,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-30 11:33:12" itemprop="dateModified" datetime="2019-04-30T11:33:12+08:00">2019-04-30</time>
+                <time title="修改时间：2019-04-30 12:54:07" itemprop="dateModified" datetime="2019-04-30T12:54:07+08:00">2019-04-30</time>
               
             
           </span>
@@ -1391,7 +1351,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
 
                 
                 
@@ -1429,392 +1389,13 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
         
           
             <p>
-              解释DI即依赖注入
-IOC：也即控制反转，DI即依赖注入，控制反转IOC和依赖注入DI其实就是同个概念的两个不同角度的解释。
-
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/01/11/DI/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/11/IOC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="java blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/11/IOC/" class="post-title-link" itemprop="url">IOC</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-01-11 16:24:16" itemprop="dateCreated datePublished" datetime="2018-01-11T16:24:16+08:00">2018-01-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-30 11:34:17" itemprop="dateModified" datetime="2019-04-30T11:34:17+08:00">2019-04-30</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              解释IoC(Inversion of Control)控制反转，包含了两个方面：控制、反转。
-
-控制指的是：当前对象对内部成员的控制权。
-反转指的是：这种控制权不由当前对象管理了，由其他(类,第三方容器)来管理。
-
-IOC容器Bean工厂，创建并管理bean。
-
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/01/11/IOC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/11/事务并发一致性问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="java blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/11/事务并发一致性问题/" class="post-title-link" itemprop="url">事务并发一致性问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-01-11 11:17:06" itemprop="dateCreated datePublished" datetime="2018-01-11T11:17:06+08:00">2018-01-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-26 15:24:00" itemprop="dateModified" datetime="2019-04-26T15:24:00+08:00">2019-04-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              
-在并发环境下，事务的隔离性很难保证，因此会出现很多并发一致性问题。
-
-丢失修改T1 和 T2 两个事务都对一个数据进行修改，T1 先修改，T2 随后修改，T2 的修改覆盖了 T1 的修改。
-
-读脏数据T1 修改一个数据，T2 随后读取这个数据。如果 T1 撤销了这次修改，那么 T2 读取的数据是脏
+              实现数据的增删改查前面已经讲到用接口的方式编程。这种方式，要注意的一个地方就是。在 User.xml 的配置文件中，mapper namespace=&quot;com.yihaomen.mybatis.inter.IUserOperation&quot; ，命名空间非常重要，不能有错，必须与我们定
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/11/事务并发一致性问题/#more" rel="contents">
+              <a class="btn" href="/2018/03/03/Mybatis增删改查/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1874,7 +1455,7 @@ IOC容器Bean工厂，创建并管理bean。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/03/Socket/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/03/03/Mybatis以接口方式编程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1894,7 +1475,7 @@ IOC容器Bean工厂，创建并管理bean。
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/03/Socket/" class="post-title-link" itemprop="url">Socket</a>
+                <a href="/2018/03/03/Mybatis以接口方式编程/" class="post-title-link" itemprop="url">Mybatis以接口方式编程</a>
               
             
           </h1>
@@ -1919,7 +1500,7 @@ IOC容器Bean工厂，创建并管理bean。
                 
               
 
-              <time title="创建时间：2018-01-03 12:31:39" itemprop="dateCreated datePublished" datetime="2018-01-03T12:31:39+08:00">2018-01-03</time>
+              <time title="创建时间：2018-03-03 12:05:38" itemprop="dateCreated datePublished" datetime="2018-03-03T12:05:38+08:00">2018-03-03</time>
             
 
             
@@ -1936,7 +1517,7 @@ IOC容器Bean工厂，创建并管理bean。
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:24:39" itemprop="dateModified" datetime="2019-04-26T15:24:39+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-30 12:51:49" itemprop="dateModified" datetime="2019-04-30T12:51:49+08:00">2019-04-30</time>
               
             
           </span>
@@ -1953,7 +1534,7 @@ IOC容器Bean工厂，创建并管理bean。
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
 
                 
                 
@@ -1991,21 +1572,14 @@ IOC容器Bean工厂，创建并管理bean。
         
           
             <p>
-              一、I/O 模型一个输入操作通常包括两个阶段：
-
-等待数据准备好
-从内核向进程复制数据
-
-对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区复制到应用进程缓冲区。
-Unix 有五种 I/O 模型：
-
-阻塞式 
+              以接口的方式编程前面一章，已经搭建好了 Eclipse,Mybatis,MySql 的环境，并且实现了一个简单的查询。请注意，这种方式是用 SqlSession 实例来直接执行已映射的SQL语句：
+session.selectOne(&quot;com.yihaomen.mybatis.models
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/03/Socket/#more" rel="contents">
+              <a class="btn" href="/2018/03/03/Mybatis以接口方式编程/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2065,7 +1639,7 @@ Unix 有五种 I/O 模型：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/12/25/分治算法/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/03/01/Mybatis开发环境搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -2085,7 +1659,7 @@ Unix 有五种 I/O 模型：
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/12/25/分治算法/" class="post-title-link" itemprop="url">分治算法</a>
+                <a href="/2018/03/01/Mybatis开发环境搭建/" class="post-title-link" itemprop="url">Mybatis开发环境搭建</a>
               
             
           </h1>
@@ -2110,7 +1684,7 @@ Unix 有五种 I/O 模型：
                 
               
 
-              <time title="创建时间：2017-12-25 17:16:20" itemprop="dateCreated datePublished" datetime="2017-12-25T17:16:20+08:00">2017-12-25</time>
+              <time title="创建时间：2018-03-01 11:59:31" itemprop="dateCreated datePublished" datetime="2018-03-01T11:59:31+08:00">2018-03-01</time>
             
 
             
@@ -2127,7 +1701,376 @@ Unix 有五种 I/O 模型：
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:22:24" itemprop="dateModified" datetime="2019-04-26T15:22:24+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-30 12:50:50" itemprop="dateModified" datetime="2019-04-30T12:50:50+08:00">2019-04-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              开发环境搭建Mybatis 的开发环境搭建，选择: Eclipse J2EE 版本，MySql 5.1 ,JDK 1.7,Mybatis3.2.0.jar包。这些软件工具均可以到各自的官方网站上下载。
+首先建立一个名字为 MyBaits 的 dynamic web project
+
+现阶段，你可以直
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/03/01/Mybatis开发环境搭建/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/31/Mybatis简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/01/31/Mybatis简介/" class="post-title-link" itemprop="url">Mybatis简介</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-31 11:56:31" itemprop="dateCreated datePublished" datetime="2018-01-31T11:56:31+08:00">2018-01-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-30 11:58:31" itemprop="dateModified" datetime="2019-04-30T11:58:31+08:00">2019-04-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              简介什么是 Mybatis?MyBatis 是支持普通 SQL 查询，存储过程和高级映射的优秀持久层框架。MyBatis 消除了几乎所有的 JDBC 代码和参数的手工设置以及结果集的检索。MyBatis 使用简单的 XML 或注解用于配置和原始映射，将接口和 Java 的 POJOs（Plan Ol
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/01/31/Mybatis简介/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/23/深度优先搜索/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/01/23/深度优先搜索/" class="post-title-link" itemprop="url">深度优先搜索</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-23 10:03:59" itemprop="dateCreated datePublished" datetime="2018-01-23T10:03:59+08:00">2018-01-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-26 15:15:50" itemprop="dateModified" datetime="2019-04-26T15:15:50+08:00">2019-04-26</time>
               
             
           </span>
@@ -2182,14 +2125,13 @@ Unix 有五种 I/O 模型：
         
           
             <p>
-              基本概念在计算机科学中，分治法是一种很重要的算法。字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。
-基本思想及策略分治法的设计思想是：将一个难以直接解决的大问题，分割成一
+              基本概念深度优先搜索算法（英语：Depth-First-Search，DFS）是一种用于遍历或搜索树或图的算法。沿着树的深度遍历树的节点，尽可能深的搜索树的分支。当节点v的所在边都己被探寻过，搜索将回溯到发现节点v的那条边的起始节点。这一过程一直进行到已发现从源节点可达的所有节点为止。如果还存在未被
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/12/25/分治算法/#more" rel="contents">
+              <a class="btn" href="/2018/01/23/深度优先搜索/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2238,7 +2180,7 @@ Unix 有五种 I/O 模型：
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2280,7 +2222,7 @@ Unix 有五种 I/O 模型：
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">75</span>
+                    <span class="site-state-item-count">85</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2321,7 +2263,9 @@ Unix 有五种 I/O 模型：
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2536,7 +2480,21 @@ Unix 有五种 I/O 模型：
                     
                       
                     
-                    <span class="site-state-item-count">99</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">106</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
