@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[傅里叶变换]]></title>
+    <url>%2F2019%2F04%2F29%2F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[傅里叶变换傅里叶变换是将按时间或空间采样的信号与按频率采样的相同信号进行关联的数学公式。在信号处理中，傅里叶变换可以揭示信号的重要特征（即其频率分量）。 对于包含n个均匀采样点的向量x，其傅里叶变换定义为 w=e-2πi/n是n个复单位根之一，其中i是虚数单位。对于x和y，索引 j 和 k 的范围为0到n-1。 MATLAB® 中的 fft 函数使用快速傅里叶变换算法来计算数据的傅里叶变换。以正弦信号 x 为例，该信号是时间 t 的函数，频率分量为 15 Hz 和 20 Hz。使用在 10 秒周期内以 秒为增量进行采样的时间向量。 123t = 0:1/50:10-1/50; x = sin(2*pi*15*t) + sin(2*pi*20*t);plot(t,x) 计算信号的傅里叶变换，并在频率空间创建对应于信号采样的向量 f。 12y = fft(x); f = (0:length(y)-1)*50/length(y); 以频率函数形式绘制信号幅值时，幅值尖峰对应于信号的 15 Hz 和 20 Hz 频率分量。 12plot(f,abs(y))title(&apos;Magnitude&apos;) 该变换还会生成尖峰的镜像副本，该副本对应于信号的负频率。为了更好地以可视化方式呈现周期性，您可以使用 fftshift 函数对变换执行以零为中心的循环平移。 1234n = length(x); fshift = (-n/2:n/2-1)*(50/n);yshift = fftshift(y);plot(fshift,abs(yshift)) 噪声信号在科学应用中，信号经常遭到随机噪声破坏，掩盖其频率分量。傅里叶变换可以清除随机噪声并显现频率。例如，通过在原始信号 x 中注入高斯噪声，创建一个新信号 xnoise。 1xnoise = x + 2.5*gallery(&apos;normaldata&apos;,size(t),4); 频率函数形式的信号功率是信号处理中的一种常用度量。功率是信号的傅里叶变换按频率样本数进行归一化后的平方幅值。计算并绘制以零频率为中心的噪声信号的功率频谱。尽管存在噪声，您仍可以根据功率中的尖峰辨识出信号的频率。 12345ynoise = fft(xnoise);ynoiseshift = fftshift(ynoise); power = abs(ynoiseshift).^2/n; plot(fshift,power)title(&apos;Power&apos;) 计算效率直接使用傅里叶变换公式分别计算y的n个元素需要n2数量级的浮点运算。使用快速傅里叶变换算法，则只需要nlogn 数量级的运算。在处理包含成百上千万个数据点的数据时，这一计算效率会带来很大的优势。在n 为 2 的幂时，许多专门的快速傅里叶变换实现可进一步提高效率。 以加利福尼亚海岸的水下麦克风所收集的音频数据为例。在康奈尔大学生物声学研究项目维护的库中可以找到这些数据。载入包含太平洋蓝鲸鸣声的文件 bluewhale.au，并对其中一部分数据进行格式化。可使用命令 sound(x,fs) 来收听完整的音频文件。 123456789whaleFile = &apos;bluewhale.au&apos;;[x,fs] = audioread(whaleFile);whaleMoan = x(2.45e4:3.10e4);t = 10*(0:1/fs:(length(whaleMoan)-1)/fs);plot(t,whaleMoan)xlabel(&apos;Time (seconds)&apos;)ylabel(&apos;Amplitude&apos;)xlim([0 t(end)]) 指定新的信号长度，该长度是大于原始长度的最邻近的 2 的幂。然后使用 fft 和新的信号长度计算傅里叶变换。fft 会自动用零填充数据，以增加样本大小。此填充操作可以大幅提高变换计算的速度，对于具有较大质因数的样本大小更是如此。 123m = length(whaleMoan); n = pow2(nextpow2(m));y = fft(whaleMoan,n); 绘制信号的功率频谱。绘图指示，呻吟音包含约 17 Hz 的基本频率和一系列谐波（其中强调了第二个谐波）。 12345f = (0:n-1)*(fs/n)/10; % frequency vectorpower = abs(y).^2/n; % power spectrum plot(f(1:floor(n/2)),power(1:floor(n/2)))xlabel(&apos;Frequency&apos;)ylabel(&apos;Power&apos;)]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>磨皮美颜</tag>
+        <tag>线性组合</tag>
+        <tag>傅里叶变换</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[傅里叶级数]]></title>
     <url>%2F2019%2F04%2F29%2F%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0%2F</url>
     <content type="text"><![CDATA[傅立叶级数、傅立叶变换实际上就是线性组合。 1 对周期函数进行分解的猜想拉格朗日等数学家发现某些周期函数可以由三角函数的和来表示，比如下图中，黑色的斜线就是周期为2π 的函数，而红色的曲线是三角函数之和，可以看出两者确实近似： 而另外一位数学家： 让·巴普蒂斯·约瑟夫·傅里叶男爵（1768 －1830）猜测任意周期函数都可以写成三角函数之和。 2 分解的思路假设f(x)是周期为T的函数，傅里叶男爵会怎么构造三角函数的和，使之等于f(x)？ 2.1 常数项对于y=C,C∈R这样的常数函数： 根据周期函数的定义，常数函数是周期函数，周期为任意实数。 所以，分解里面得有一个常数项。 2.2 通过sin(x),cos(x)进行分解首先，sin(x),cos(x)是周期函数，进行合理的加减组合，结果可以是周期函数。 其次，它们的微分和积分都很简单。 然后，sin(x)是奇函数，即： 从图像上也可以看出，sin(x)关于原点对称，是奇函数： 而奇函数与奇函数加减只能得到奇函数，即： 其中，fodd表示奇函数。 而cos(x)是偶函数，即： 从图像上也可以看出，cos(x)关于Y轴对称，是偶函数： 同样的，偶函数与偶函数加减只能得到偶函数，即： 其中，feven表示偶函数。 但是任意函数可以分解和奇偶函数之和： 所以同时需要sin(x),cos(x)。 2.3 保证组合出来周期为T之前说了，f(x)是周期为T的函数，我们怎么保证组合出来的函数周期依然为T呢？ 比如下面这个函数的周期为2π： 很显然，sin(x)的周期也是2π： sin(2x)的周期也是2π，虽然最小周期是π： 很显然，sin(nx)的周期都是2π： 更一般的，如果f(x)的周期为T，那么： 这些函数的周期都为T。 将这些函数进行加减，就保证了得到的函数的周期也为T。 2.4 调整振幅现在我们有一堆周期为2π的函数了，比如说sin(x),sin(2x),sin(3x),sin(4x),sin(5x)： 通过调整振幅可以让它们慢慢接近目标函数，比如sin(x)看起来处处都比目标函数低一些： 把它的振幅增加一倍： 2sin(x)有的地方超出去了，从周期为2π的函数中选择一个，减去一点： 调整振幅，加加减减，我们可以慢慢接近目标函数： 2.5 小结综上，构造出来的三角函数之和大概类似下面的样子： 这样就符合之前的分析： 有常数项 奇函数和偶函数可以组合出任意函数 周期为T 调整振幅，逼近原函数 之前的分析还比较简单，后面开始有点难度了。即怎么确定这三个系数： 3 sin(x)的另外一种表示方法直接不好确定，要迂回一下，先稍微介绍一下什么是：eiwt？ 3.1 eiwt看到类似于eiθ这种就应该想到复平面上的一个夹角为θ的向量： 那么当θ不再是常数，而是代表时间的变量t的时候： 随着时间t的流逝，从0开始增长，这个向量就会旋转起来,2π秒会旋转一圈，也就是：T=2π 3.2 通过eiwt表示sin(t)根据欧拉公式，有： 所以，在时间t轴上，把eit向量的虚部（也就是纵坐标）记录下来，得到的就是sin(t): 在时间t轴上，把ei2t向量的虚部记录下来，得到的就是sin(2t)： 如果在时间t轴上，把eit的实部（横坐标）记录下来，得到的就是cos(t)的曲线： 更一般的我们认为，我们具有两种看待sin(x),cos(x)的角度： 这两种角度，一个可以观察到旋转的频率，所以称为频域；一个可以看到流逝的时间，所以称为时域： 4 通过频域来求系数4.1 函数是线性组合假设有这么个函数： 是一个T=2π的函数： 如果转到频域去，那么它们是下面这个复数函数的虚部： 先看看eiθ+ei2θ，其中θ是常数，很显然这是两个向量之和： 现在让它们动起来，把θ变成流逝的时间t，并且把虚部记录下来： 我们令： 这里用大写的G来表示复数函数。 刚才看到了，eit和ei2t都是向量，所以上式可以写作： 这里就是理解的重点了，从线性代数的角度： eit和ei2t是基（可以参考无限维的希尔伯特空间，自行google） G(t)是基eit,ei2t的线性组合 g(t)是G(t)的虚部，所以取虚部，很容易得到： 即g(t)是基sin(t),sin(2t)的线性组合。 那么sin(t),sin(2t)的系数，实际上是g(t)在基sin(t),sin(2t)下的坐标了。 4.2 如何求正交基的坐标有了这个结论之后，我们如何求坐标？ 我们来看个例子，假设： 其中 通过点积： 可知这两个向量正交，是正交基。图示如下： 通过点积可以算出 的系数（对于正交基才可以这么做）： 4.3 如何求sin(nt)基下的坐标在这里抛出一个结论（可以参考无限维的希尔伯特空间,自行google），函数向量的点积是这么定义的： 其中，f(x)是函数向量，g(x)是基，T是f(x)的周期。 那么对于：g(x)=sin(x)+sin(2x) 其中，g(x)是向量，sin(t),sin(2t)是基，周期T=2π。 根据刚才内积的定义： 所以是正交基，那么根据刚才的分析，可以这么求坐标： 4.4 更一般的对于我们之前的假设，其中f(x)周期为T： 可以改写为这样： 也就是说向量f(x)的基为： 是的，1也是基。 那么可以得到： C也可以通过点积来表示，最终我们得到： 其中：]]></content>
@@ -8,9 +21,9 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>傅里叶级数</tag>
         <tag>磨皮美颜</tag>
         <tag>线性组合</tag>
+        <tag>傅里叶级数</tag>
       </tags>
   </entry>
   <entry>
@@ -40,7 +53,7 @@
     <url>%2F2019%2F04%2F28%2FSpringMVC%E5%85%A5%E9%97%A8%2F</url>
     <content type="text"><![CDATA[Spring web mvc介绍Spring web mvc和Struts2都属于表现层的框架,它是Spring框架的一部分,我们可以从Spring的整体结构中看得出来: Web mvc 用户发起request请求至控制器(Controller)控制接收用户请求的数据，委托给模型进行处理 控制器通过模型(Model)处理数据并得到处理结果模型通常是指业务逻辑 控制器将模型数据在视图(View)中展示web中模型无法将数据直接在视图上显示，需要通过控制器完成。如果在C/S应用中模型是可以将数据在视图中展示的。 控制器将视图response响应给用户通过视图展示给用户要的数据或处理结果。 Spring web mvc 架构架构图 用户发送请求至前端控制器DispatcherServlet. DispatcherServlet收到请求调用HandlerMapping处理器映射器. 处理器映射器找到具体的处理器，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet. DispatcherServlet调用HandlerAdapter处理器适配器. HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器). Controller执行完成返回ModelAndView. HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet. DispatcherServlet将ModelAndView传给ViewReslover视图解析器. ViewReslover解析后返回具体View. DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。 DispatcherServlet响应用户 组件说明 DispatcherServlet：作为前端控制器，整个流程控制的中心，控制其它组件执行，统一调度，降低组件之间的耦合性，提高每个组件的扩展性。 HandlerMapping：通过扩展处理器映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。 HandlAdapter：通过扩展处理器适配器，支持更多类型的处理器。 ViewResolver：通过扩展视图解析器，支持更多类型的视图解析，例如：jsp、freemarker、pdf、excel等。 Handler：处理器，即后端控制器用controller表示。 View：视图，即展示给用户的界面，视图中通常需要标签语言展示模型数据。]]></content>
       <categories>
-        <category>Spring</category>
+        <category>spring</category>
       </categories>
       <tags>
         <tag>WebMVC</tag>
@@ -648,8 +661,8 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>LIFO</tag>
         <tag>线性表</tag>
+        <tag>LIFO</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -799,8 +812,8 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>线性表</tag>
         <tag>链表</tag>
+        <tag>线性表</tag>
       </tags>
   </entry>
   <entry>
