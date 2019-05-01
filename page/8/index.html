@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/13/树/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/09/13/数据库分库分表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -369,7 +369,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/13/树/" class="post-title-link" itemprop="url">树</a>
+                <a href="/2018/09/13/数据库分库分表/" class="post-title-link" itemprop="url">数据库分库分表</a>
               
             
           </h1>
@@ -394,7 +394,7 @@
                 
               
 
-              <time title="创建时间：2017-11-13 11:13:02" itemprop="dateCreated datePublished" datetime="2017-11-13T11:13:02+08:00">2017-11-13</time>
+              <time title="创建时间：2018-09-13 16:44:51" itemprop="dateCreated datePublished" datetime="2018-09-13T16:44:51+08:00">2018-09-13</time>
             
 
             
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:29:45" itemprop="dateModified" datetime="2019-04-26T15:29:45+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:18:11" itemprop="dateModified" datetime="2019-04-26T15:18:11+08:00">2019-04-26</time>
               
             
           </span>
@@ -428,7 +428,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -466,15 +466,18 @@
         
           
             <p>
-              介绍树 是一种经常用到的数据结构，用来模拟具有树状结构性质的数据集合。
-树里的每一个节点有一个根植和一个包含所有子节点的列表。从图的观点来看，树也可视为一个拥有N 个节点和N-1 条边的一个有向无环图。
-二叉树是一种更为典型的树树状结构。如它名字所描述的那样，二叉树是每个节点最多有两个子树的树结构，
+              数据切分
+关系型数据库本身比较容易成为系统瓶颈，单机存储容量、连接数、处理能力都有限。
+
+当单表的数据量达到1000W或100G以后，由于查询维度较多，即使添加从库、优化索引，做很多操作时性能仍下降严重。此时就要考虑对其进行切分了，切分的目的就在于减少数据库的负担，缩短查询时间。
+
+数据库分布式核心
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/13/树/#more" rel="contents">
+              <a class="btn" href="/2018/09/13/数据库分库分表/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -534,7 +537,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/11/图/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/09/13/HTTP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -554,7 +557,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/11/图/" class="post-title-link" itemprop="url">图</a>
+                <a href="/2018/09/13/HTTP/" class="post-title-link" itemprop="url">HTTP</a>
               
             
           </h1>
@@ -579,7 +582,7 @@
                 
               
 
-              <time title="创建时间：2017-11-11 11:52:25" itemprop="dateCreated datePublished" datetime="2017-11-11T11:52:25+08:00">2017-11-11</time>
+              <time title="创建时间：2018-09-13 12:08:32" itemprop="dateCreated datePublished" datetime="2018-09-13T12:08:32+08:00">2018-09-13</time>
             
 
             
@@ -596,7 +599,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:20:08" itemprop="dateModified" datetime="2019-04-26T15:20:08+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:26:49" itemprop="dateModified" datetime="2019-04-26T15:26:49+08:00">2019-04-26</time>
               
             
           </span>
@@ -613,7 +616,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -651,15 +654,25 @@
         
           
             <p>
-              图的基础
-A graph is a data structure where a node can have zero or more adjacent elements.
-The connection between two nodes is called edge. Nodes can also
+              一 、基础概念URIURI 包含 URL 和 URN。
+
+请求和响应报文1. 请求报文
+2. 响应报文
+二、HTTP 方法客户端发送的  请求报文  第一行为请求行，包含了方法字段。
+GET
+获取资源
+
+当前网络请求中，绝大部分使用的是 GET 方法。
+HEAD
+获取报文首部
+
+和 GET 方法类似
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/11/图/#more" rel="contents">
+              <a class="btn" href="/2018/09/13/HTTP/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -719,7 +732,7 @@ The connection between two nodes is called edge. Nodes can also
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/05/希尔排序/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/09/05/Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -739,7 +752,7 @@ The connection between two nodes is called edge. Nodes can also
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/05/希尔排序/" class="post-title-link" itemprop="url">希尔排序</a>
+                <a href="/2018/09/05/Redis/" class="post-title-link" itemprop="url">Redis</a>
               
             
           </h1>
@@ -764,7 +777,7 @@ The connection between two nodes is called edge. Nodes can also
                 
               
 
-              <time title="创建时间：2017-11-05 09:25:31" itemprop="dateCreated datePublished" datetime="2017-11-05T09:25:31+08:00">2017-11-05</time>
+              <time title="创建时间：2018-09-05 16:47:58" itemprop="dateCreated datePublished" datetime="2018-09-05T16:47:58+08:00">2018-09-05</time>
             
 
             
@@ -781,7 +794,7 @@ The connection between two nodes is called edge. Nodes can also
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:19:46" itemprop="dateModified" datetime="2019-04-26T15:19:46+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:24:50" itemprop="dateModified" datetime="2019-04-26T15:24:50+08:00">2019-04-26</time>
               
             
           </span>
@@ -798,7 +811,7 @@ The connection between two nodes is called edge. Nodes can also
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -836,14 +849,15 @@ The connection between two nodes is called edge. Nodes can also
         
           
             <p>
-              基本思想在要排序的一组数中，根据某一增量分为若干子序列，并对子序列分别进行插入排序。然后逐渐将增量减小,并重复上述过程。直至增量为1,此时数据序列基本有序,最后进行插入排序。
-java代码实现public static void shell_sort(int array[],int lenth)&#
+              一、概述Redis 是速度非常快的非关系型（NoSQL）内存键值数据库，可以存储键和五种不同类型的值之间的映射。
+键的类型只能为字符串，值支持五种数据类型：字符串、列表、集合、散列表、有序集合。
+Redis 支持很多特性，例如将内存中的数据持久化到硬盘中，使用复制来扩展读性能，使用分片来扩展写性能。
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/05/希尔排序/#more" rel="contents">
+              <a class="btn" href="/2018/09/05/Redis/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -903,7 +917,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/04/广度优先搜索/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/09/03/链接/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -923,7 +937,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/04/广度优先搜索/" class="post-title-link" itemprop="url">广度优先搜索</a>
+                <a href="/2018/09/03/链接/" class="post-title-link" itemprop="url">链接</a>
               
             
           </h1>
@@ -948,7 +962,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
                 
               
 
-              <time title="创建时间：2017-11-04 10:14:18" itemprop="dateCreated datePublished" datetime="2017-11-04T10:14:18+08:00">2017-11-04</time>
+              <time title="创建时间：2018-09-03 18:27:10" itemprop="dateCreated datePublished" datetime="2018-09-03T18:27:10+08:00">2018-09-03</time>
             
 
             
@@ -965,7 +979,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:19:36" itemprop="dateModified" datetime="2019-04-26T15:19:36+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:10:45" itemprop="dateModified" datetime="2019-04-26T15:10:45+08:00">2019-04-26</time>
               
             
           </span>
@@ -982,7 +996,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
 
                 
                 
@@ -1020,14 +1034,16 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
         
           
             <p>
-              基本概念广度优先搜索算法（英语：Breadth-First-Search，缩写为BFS），又译作宽度优先搜索，或横向优先搜索，是一种图形搜索算法。简单的说，BFS是从根节点开始，沿着树的宽度遍历树的节点。如果所有节点均被访问，则算法中止。广度优先搜索的实现一般采用open-closed表。
-例题：被
+              编译系统以下是一个 hello.c 程序：
+#include &lt;stdio.h&gt;int main()&#123;    printf("hello, world\n");    return 0;&#125;
+在 Unix 系统上，由编译器把源文件转换为目标文件。
+gcc -o hell
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/04/广度优先搜索/#more" rel="contents">
+              <a class="btn" href="/2018/09/03/链接/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1087,7 +1103,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/03/归并排序/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/09/01/Docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1107,7 +1123,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/03/归并排序/" class="post-title-link" itemprop="url">归并排序</a>
+                <a href="/2018/09/01/Docker/" class="post-title-link" itemprop="url">Docker</a>
               
             
           </h1>
@@ -1132,7 +1148,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
                 
               
 
-              <time title="创建时间：2017-11-03 12:04:22" itemprop="dateCreated datePublished" datetime="2017-11-03T12:04:22+08:00">2017-11-03</time>
+              <time title="创建时间：2018-09-01 15:56:35" itemprop="dateCreated datePublished" datetime="2018-09-01T15:56:35+08:00">2018-09-01</time>
             
 
             
@@ -1149,379 +1165,7 @@ java代码实现public static void shell_sort(int array[],int lenth)&#
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:19:13" itemprop="dateModified" datetime="2019-04-26T15:19:13+08:00">2019-04-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              基本思想归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法的一个非常典型的应用。首先考虑下如何将2个有序数列合并。这个非常简单，只要从比较2个数列的第一个数，谁小就先取谁，取了后就在对应数列中删除这个数。然后再进行比较，如果有数列为空，那直接将另一个数列的数据依次取出即可。
-java
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/11/03/归并排序/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/02/快速排序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="java blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/02/快速排序/" class="post-title-link" itemprop="url">快速排序</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-02 09:31:06" itemprop="dateCreated datePublished" datetime="2017-11-02T09:31:06+08:00">2017-11-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-26 15:19:00" itemprop="dateModified" datetime="2019-04-26T15:19:00+08:00">2019-04-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              基本思想
-先从数列中取出一个数作为key值；
-将比这个数小的数全部放在它的左边，大于或等于它的数全部放在它的右边；
-对左右两个小数列重复第二步，直至各区间只有1个数。
-
-java代码实现public static void quickSort(int a[],int l,int r)&#123;  
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/11/02/快速排序/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/01/Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="java blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/01/Git/" class="post-title-link" itemprop="url">Git</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-01 15:21:54" itemprop="dateCreated datePublished" datetime="2017-11-01T15:21:54+08:00">2017-11-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-26 15:27:01" itemprop="dateModified" datetime="2019-04-26T15:27:01+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:27:25" itemprop="dateModified" datetime="2019-04-26T15:27:25+08:00">2019-04-26</time>
               
             
           </span>
@@ -1576,17 +1220,14 @@ java代码实现public static void quickSort(int a[],int l,int r)&#123;
         
           
             <p>
-              集中式与分布式Git 属于分布式版本控制系统，而 SVN 属于集中式。
-
-集中式版本控制只有中心服务器拥有一份代码，而分布式版本控制每个人的电脑上就有一份完整的代码。
-集中式版本控制有安全性问题，当中心服务器挂了所有人都没办法工作了。
-集中式版本控制需要连网才能工作，如果网速过慢，那么提交一个文件的
+              一、解决的问题由于不同的机器有不同的操作系统，以及不同的库和组件，在将一个应用部署到多台机器上需要进行大量的环境配置操作。
+Docker 主要解决环境配置问题，它是一种虚拟化技术，对进程进行隔离，被隔离的进程独立于宿主操作系统和其它隔离的进程。使用 Docker 可以不修改应用程序代码，不需要开发人
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/01/Git/#more" rel="contents">
+              <a class="btn" href="/2018/09/01/Docker/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1646,7 +1287,7 @@ java代码实现public static void quickSort(int a[],int l,int r)&#123;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/01/插入排序/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/07/09/传输层/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1666,7 +1307,7 @@ java代码实现public static void quickSort(int a[],int l,int r)&#123;
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/01/插入排序/" class="post-title-link" itemprop="url">插入排序</a>
+                <a href="/2018/07/09/传输层/" class="post-title-link" itemprop="url">传输层</a>
               
             
           </h1>
@@ -1691,7 +1332,7 @@ java代码实现public static void quickSort(int a[],int l,int r)&#123;
                 
               
 
-              <time title="创建时间：2017-11-01 09:17:26" itemprop="dateCreated datePublished" datetime="2017-11-01T09:17:26+08:00">2017-11-01</time>
+              <time title="创建时间：2018-07-09 11:28:31" itemprop="dateCreated datePublished" datetime="2018-07-09T11:28:31+08:00">2018-07-09</time>
             
 
             
@@ -1708,7 +1349,7 @@ java代码实现public static void quickSort(int a[],int l,int r)&#123;
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:18:49" itemprop="dateModified" datetime="2019-04-26T15:18:49+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:23:03" itemprop="dateModified" datetime="2019-04-26T15:23:03+08:00">2019-04-26</time>
               
             
           </span>
@@ -1725,7 +1366,7 @@ java代码实现public static void quickSort(int a[],int l,int r)&#123;
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -1763,15 +1404,15 @@ java代码实现public static void quickSort(int a[],int l,int r)&#123;
         
           
             <p>
-              基本思想在要排序的一组数中，假定前n-1个数已经排好序，现在将第n个数插到前面的有序数列中，使得这n个数也是排好顺序的。如此反复循环，直到全部排好顺序。
-平均时间复杂度O(n2)
-java代码实现public static void  insert_sort(int array[],int lent
+              网络层只把分组发送到目的主机，但是真正通信的并不是主机而是主机中的进程。传输层提供了进程间的逻辑通信，传输层向高层用户屏蔽了下面网络层的核心细节，使应用程序看起来像是在两个传输层实体之间有一条端到端的逻辑通信信道。
+UDP 和 TCP 的特点
+用户数据报协议 UDP（User Datagram Pr
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/01/插入排序/#more" rel="contents">
+              <a class="btn" href="/2018/07/09/传输层/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1831,7 +1472,7 @@ java代码实现public static void  insert_sort(int array[],int lent
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/11/01/选择排序/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/07/05/内存管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1851,7 +1492,7 @@ java代码实现public static void  insert_sort(int array[],int lent
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/11/01/选择排序/" class="post-title-link" itemprop="url">选择排序</a>
+                <a href="/2018/07/05/内存管理/" class="post-title-link" itemprop="url">内存管理</a>
               
             
           </h1>
@@ -1876,7 +1517,7 @@ java代码实现public static void  insert_sort(int array[],int lent
                 
               
 
-              <time title="创建时间：2017-11-01 09:09:32" itemprop="dateCreated datePublished" datetime="2017-11-01T09:09:32+08:00">2017-11-01</time>
+              <time title="创建时间：2018-07-05 18:09:01" itemprop="dateCreated datePublished" datetime="2018-07-05T18:09:01+08:00">2018-07-05</time>
             
 
             
@@ -1893,7 +1534,7 @@ java代码实现public static void  insert_sort(int array[],int lent
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:10:57" itemprop="dateModified" datetime="2019-04-26T15:10:57+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:22:53" itemprop="dateModified" datetime="2019-04-26T15:22:53+08:00">2019-04-26</time>
               
             
           </span>
@@ -1910,7 +1551,7 @@ java代码实现public static void  insert_sort(int array[],int lent
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
 
                 
                 
@@ -1948,15 +1589,14 @@ java代码实现public static void  insert_sort(int array[],int lent
         
           
             <p>
-              基本思想在长度为N的无序数组中，第一次遍历n-1个数，找到最小的数值与第一个元素交换；第二次遍历n-2个数，找到最小的数值与第二个元素交换；。。。第n-1次遍历，找到最小的数值与第n-1个元素交换，排序完成。
-平均时间复杂度O(n2)
-java代码实现public static void selec
+              虚拟内存虚拟内存的目的是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。
+为了更好的管理内存，操作系统将内存抽象成地址空间。每个程序拥有自己的地址空间，这个地址空间被分割成多个块，每一块称为一页。这些页被映射到物理内存，但不需要映射到连续的物理内存，也不需要所有页都必须在物理内存中
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/11/01/选择排序/#more" rel="contents">
+              <a class="btn" href="/2018/07/05/内存管理/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2016,7 +1656,7 @@ java代码实现public static void selec
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/09/15/单链表/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/07/01/应用层/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -2036,7 +1676,7 @@ java代码实现public static void selec
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/09/15/单链表/" class="post-title-link" itemprop="url">单链表</a>
+                <a href="/2018/07/01/应用层/" class="post-title-link" itemprop="url">应用层</a>
               
             
           </h1>
@@ -2061,7 +1701,7 @@ java代码实现public static void selec
                 
               
 
-              <time title="创建时间：2017-09-15 19:08:16" itemprop="dateCreated datePublished" datetime="2017-09-15T19:08:16+08:00">2017-09-15</time>
+              <time title="创建时间：2018-07-01 11:41:57" itemprop="dateCreated datePublished" datetime="2018-07-01T11:41:57+08:00">2018-07-01</time>
             
 
             
@@ -2078,7 +1718,7 @@ java代码实现public static void selec
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:22:06" itemprop="dateModified" datetime="2019-04-26T15:22:06+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:19:25" itemprop="dateModified" datetime="2019-04-26T15:19:25+08:00">2019-04-26</time>
               
             
           </span>
@@ -2095,7 +1735,7 @@ java代码实现public static void selec
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -2133,29 +1773,384 @@ java代码实现public static void selec
         
           
             <p>
-              概览
-本片博客将介绍以下内容
+              域名系统DNS 是一个分布式数据库，提供了主机名和 IP 地址之间相互转换的服务。这里的分布式数据库是指，每个站点只保留它自己的那部分数据。
+域名具有层次结构，从上到下依次为：根域名、顶级域名、二级域名。
 
-
-单链表的结构；
-
-单链表中执行遍历，插入和删除操作；
-
-单链表中不同操作的时间复杂度。
-
-
-单链表的简介
-链表是一种线性数据结构，它通过引用字段将所有分离的元素链接在一起。
-
-下面是一个单链表的例子：
-蓝色箭头显示单个链接列表中的结点是如何组合在一起的。
-单链表的节
+DNS 可以使用 UDP 或者 TCP 进行传输，使用的端口号都为 53。大多数情况下 DN
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/09/15/单链表/#more" rel="contents">
+              <a class="btn" href="/2018/07/01/应用层/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/05/13/AOP记录用户操作日志/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/13/AOP记录用户操作日志/" class="post-title-link" itemprop="url">AOP记录用户操作日志</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-13 15:46:53" itemprop="dateCreated datePublished" datetime="2018-05-13T15:46:53+08:00">2018-05-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-30 15:50:01" itemprop="dateModified" datetime="2019-04-30T15:50:01+08:00">2019-04-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              在Spring框架中，使用AOP配合自定义注解可以方便的实现用户操作的监控。首先搭建一个基本的Spring Boot Web环境开启Spring Boot，然后引入必要依赖：
+&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/05/13/AOP记录用户操作日志/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/05/13/Springboot配置Druid多数据源/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/13/Springboot配置Druid多数据源/" class="post-title-link" itemprop="url">Springboot配置Druid多数据源</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-13 15:35:42" itemprop="dateCreated datePublished" datetime="2018-05-13T15:35:42+08:00">2018-05-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-30 15:41:38" itemprop="dateModified" datetime="2019-04-30T15:41:38+08:00">2019-04-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              回顾在Spring中配置MyBatis SqlSessionFactory的配置：
+&lt;!-- mybatis 的SqlSessionFactory --&gt;&lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.s
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/05/13/Springboot配置Druid多数据源/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2204,7 +2199,7 @@ java代码实现public static void selec
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2246,7 +2241,7 @@ java代码实现public static void selec
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">150</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2289,7 +2284,15 @@ java代码实现public static void selec
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2518,7 +2521,129 @@ java代码实现public static void selec
                     
                       
                     
-                    <span class="site-state-item-count">106</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">167</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

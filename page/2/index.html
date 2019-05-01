@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/01/19/java并发/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/15/Feign/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -369,7 +369,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/19/java并发/" class="post-title-link" itemprop="url">java并发</a>
+                <a href="/2019/03/15/Feign/" class="post-title-link" itemprop="url">Feign</a>
               
             
           </h1>
@@ -394,7 +394,7 @@
                 
               
 
-              <time title="创建时间：2019-01-19 17:42:11" itemprop="dateCreated datePublished" datetime="2019-01-19T17:42:11+08:00">2019-01-19</time>
+              <time title="创建时间：2019-03-15 12:41:24" itemprop="dateCreated datePublished" datetime="2019-03-15T12:41:24+08:00">2019-03-15</time>
             
 
             
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:25:37" itemprop="dateModified" datetime="2019-04-26T15:25:37+08:00">2019-04-26</time>
+                <time title="修改时间：2019-05-01 12:45:33" itemprop="dateModified" datetime="2019-05-01T12:45:33+08:00">2019-05-01</time>
               
             
           </span>
@@ -428,7 +428,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springcloud/" itemprop="url" rel="index"><span itemprop="name">springcloud</span></a></span>
 
                 
                 
@@ -466,18 +466,13 @@
         
           
             <p>
-              一、线程状态转换
-新建（New）创建后尚未启动。
-可运行（Runnable）可能正在运行，也可能正在等待 CPU 时间片。
-包含了操作系统线程状态中的 Running 和 Ready。
-阻塞（Blocked）等待获取一个排它锁，如果其线程释放了锁就会结束此状态。
-无限期等待（Waiting）等待其它
+              前面我们分别通过Spring Cloud Ribbon和Spring Cloud Hystrix实现了客户端负载均衡和服务容错，而Spring Cloud Feign不但整合了这两者的功能，而且还提供了一种比Ribbon更简单的服务调用方式 ——— 声明式服务调用。在Spring Cloud Fei
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/19/java并发/#more" rel="contents">
+              <a class="btn" href="/2019/03/15/Feign/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -537,7 +532,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/01/15/攻击技术/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/13/异步调用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -557,7 +552,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/15/攻击技术/" class="post-title-link" itemprop="url">攻击技术</a>
+                <a href="/2019/03/13/异步调用/" class="post-title-link" itemprop="url">异步调用</a>
               
             
           </h1>
@@ -582,7 +577,7 @@
                 
               
 
-              <time title="创建时间：2019-01-15 15:19:37" itemprop="dateCreated datePublished" datetime="2019-01-15T15:19:37+08:00">2019-01-15</time>
+              <time title="创建时间：2019-03-13 17:08:50" itemprop="dateCreated datePublished" datetime="2019-03-13T17:08:50+08:00">2019-03-13</time>
             
 
             
@@ -599,7 +594,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:18:38" itemprop="dateModified" datetime="2019-04-26T15:18:38+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-30 17:15:59" itemprop="dateModified" datetime="2019-04-30T17:15:59+08:00">2019-04-30</time>
               
             
           </span>
@@ -616,7 +611,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统设计/" itemprop="url" rel="index"><span itemprop="name">系统设计</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
 
                 
                 
@@ -654,15 +649,14 @@
         
           
             <p>
-              一、跨站脚本攻击概念跨站脚本攻击（Cross-Site Scripting, XSS），可以将代码注入到用户浏览的网页上，这种代码包括 HTML 和 JavaScript。
-攻击原理例如有一个论坛网站，攻击者可以在上面发布以下内容：
-&lt;script&gt;location.href="//do
+              通常我们开发的程序都是同步调用的，即程序按照代码的顺序一行一行的逐步往下执行，每一行代码都必须等待上一行代码执行完毕才能开始执行。而异步编程则没有这个限制，代码的调用不再是阻塞的。所以在一些情景下，通过异步编程可以提高效率，提升接口的吞吐量。这节将介绍如何在Spring Boot中进行异步编程。
+开
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/15/攻击技术/#more" rel="contents">
+              <a class="btn" href="/2019/03/13/异步调用/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -722,7 +716,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/01/15/消息队列/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/13/自动装配/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -742,7 +736,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/15/消息队列/" class="post-title-link" itemprop="url">消息队列</a>
+                <a href="/2019/03/13/自动装配/" class="post-title-link" itemprop="url">自动装配</a>
               
             
           </h1>
@@ -767,7 +761,7 @@
                 
               
 
-              <time title="创建时间：2019-01-15 12:49:32" itemprop="dateCreated datePublished" datetime="2019-01-15T12:49:32+08:00">2019-01-15</time>
+              <time title="创建时间：2019-03-13 16:46:10" itemprop="dateCreated datePublished" datetime="2019-03-13T16:46:10+08:00">2019-03-13</time>
             
 
             
@@ -784,7 +778,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:15:58" itemprop="dateModified" datetime="2019-04-26T15:15:58+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-30 16:54:08" itemprop="dateModified" datetime="2019-04-30T16:54:08+08:00">2019-04-30</time>
               
             
           </span>
@@ -801,7 +795,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统设计/" itemprop="url" rel="index"><span itemprop="name">系统设计</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
 
                 
                 
@@ -839,19 +833,13 @@
         
           
             <p>
-              一、消息模型点对点消息生产者向消息队列中发送了一个消息之后，只能被一个消费者消费一次。
-
-发布/订阅消息生产者向频道发送一个消息之后，多个消费者可以从该频道订阅到这条消息并消费。
-
-发布与订阅模式和观察者模式有以下不同：
-
-观察者模式中，观察者和主题都知道对方的存在；而在发布与订阅模式中，发布者与订
+              模式注解Stereotype Annotation俗称为模式注解，Spring中常见的模式注解有@Service，@Repository，@Controller等，它们都“派生”自@Component注解。我们都知道，凡是被@Component标注的类都会被Spring扫描并纳入到IOC容器中，那么
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/15/消息队列/#more" rel="contents">
+              <a class="btn" href="/2019/03/13/自动装配/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -911,7 +899,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/01/11/java虚拟机/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/11/Springboot整合MongoDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -931,7 +919,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/11/java虚拟机/" class="post-title-link" itemprop="url">java虚拟机</a>
+                <a href="/2019/03/11/Springboot整合MongoDB/" class="post-title-link" itemprop="url">Springboot整合MongoDB</a>
               
             
           </h1>
@@ -956,7 +944,7 @@
                 
               
 
-              <time title="创建时间：2019-01-11 18:07:05" itemprop="dateCreated datePublished" datetime="2019-01-11T18:07:05+08:00">2019-01-11</time>
+              <time title="创建时间：2019-03-11 17:17:31" itemprop="dateCreated datePublished" datetime="2019-03-11T17:17:31+08:00">2019-03-11</time>
             
 
             
@@ -973,7 +961,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:25:25" itemprop="dateModified" datetime="2019-04-26T15:25:25+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-30 17:32:46" itemprop="dateModified" datetime="2019-04-30T17:32:46+08:00">2019-04-30</time>
               
             
           </span>
@@ -990,7 +978,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
 
                 
                 
@@ -1028,15 +1016,14 @@
         
           
             <p>
-              一、运行时数据区域
-程序计数器记录正在执行的虚拟机字节码指令的地址（如果正在执行的是本地方法则为空）。
-Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于存储局部变量表、操作数栈、常量池引用等信息。从方法调用直至执行完成的过程，就对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过
+              这节我们将整合Spring Boot与Mongo DB实现增删改查的功能，并且实现序列递增。Mongo DB下载地址：https://www.mongodb.com/download-center/community。
+新建一个Spring Boot项目，版本为2.1.3.RELEASE，并引入如下
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/11/java虚拟机/#more" rel="contents">
+              <a class="btn" href="/2019/03/11/Springboot整合MongoDB/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1096,7 +1083,7 @@ Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/01/07/设备管理/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/11/主从复制和读写分离/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1116,7 +1103,7 @@ Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/07/设备管理/" class="post-title-link" itemprop="url">设备管理</a>
+                <a href="/2019/03/11/主从复制和读写分离/" class="post-title-link" itemprop="url">主从复制和读写分离</a>
               
             
           </h1>
@@ -1141,7 +1128,7 @@ Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于
                 
               
 
-              <time title="创建时间：2019-01-07 18:17:26" itemprop="dateCreated datePublished" datetime="2019-01-07T18:17:26+08:00">2019-01-07</time>
+              <time title="创建时间：2019-03-11 15:39:18" itemprop="dateCreated datePublished" datetime="2019-03-11T15:39:18+08:00">2019-03-11</time>
             
 
             
@@ -1158,381 +1145,7 @@ Java 虚拟机栈每个 Java 方法在执行的同时会创建一个栈帧用于
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:34:54" itemprop="dateModified" datetime="2019-04-26T15:34:54+08:00">2019-04-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              磁盘结构
-盘面（Platter）：一个磁盘有多个盘面；
-磁道（Track）：盘面上的圆形带状区域，一个盘面可以有多个磁道；
-扇区（Track Sector）：磁道上的一个弧段，一个磁道可以有多个扇区，它是最小的物理储存单位，目前主要有 512 bytes 与 4 K 两种大小；
-磁头（Head）：与
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/07/设备管理/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/01/07/设计模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="java blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/07/设计模式/" class="post-title-link" itemprop="url">设计模式</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-07 16:08:44" itemprop="dateCreated datePublished" datetime="2019-01-07T16:08:44+08:00">2019-01-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-26 15:13:13" itemprop="dateModified" datetime="2019-04-26T15:13:13+08:00">2019-04-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面向对象/" itemprop="url" rel="index"><span itemprop="name">面向对象</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              一、概述设计模式是解决问题的方案，学习现有的设计模式可以做到经验复用。
-拥有设计模式词汇，在沟通时就能用更少的词汇来讨论，并且不需要了解底层细节。
-源码以及 UML 图
-二、创建型1. 单例（Singleton）Intent确保一个类只有一个实例，并提供该实例的全局访问点。
-Class Diagra
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/07/设计模式/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/01/03/leetcode-SQL题目/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="java blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/03/leetcode-SQL题目/" class="post-title-link" itemprop="url">leetcode-SQL题目</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-03 15:22:21" itemprop="dateCreated datePublished" datetime="2019-01-03T15:22:21+08:00">2019-01-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-26 15:25:12" itemprop="dateModified" datetime="2019-04-26T15:25:12+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:24:10" itemprop="dateModified" datetime="2019-04-26T15:24:10+08:00">2019-04-26</time>
               
             
           </span>
@@ -1587,13 +1200,17 @@ Class Diagra
         
           
             <p>
-              组合两个表表1: Person+-------------+---------+| 列名         | 类型     |+-------------+---------+| PersonId    | int     || FirstName   | varchar || LastName  
+              主从复制主要涉及三个线程：binlog 线程、I/O 线程和 SQL 线程。
+
+binlog 线程 ：负责将主服务器上的数据更改写入二进制日志（Binary log）中。
+I/O 线程 ：负责从主服务器上读取二进制日志，并写入从服务器的中继日志（Relay log）。
+SQL 线程 ：负责读取中继日
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/03/leetcode-SQL题目/#more" rel="contents">
+              <a class="btn" href="/2019/03/11/主从复制和读写分离/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1653,7 +1270,7 @@ Class Diagra
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/12/01/缓存/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/11/Ribbon/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1673,7 +1290,7 @@ Class Diagra
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/01/缓存/" class="post-title-link" itemprop="url">缓存</a>
+                <a href="/2019/03/11/Ribbon/" class="post-title-link" itemprop="url">Ribbon</a>
               
             
           </h1>
@@ -1698,7 +1315,7 @@ Class Diagra
                 
               
 
-              <time title="创建时间：2018-12-01 12:57:38" itemprop="dateCreated datePublished" datetime="2018-12-01T12:57:38+08:00">2018-12-01</time>
+              <time title="创建时间：2019-03-11 12:36:00" itemprop="dateCreated datePublished" datetime="2019-03-11T12:36:00+08:00">2019-03-11</time>
             
 
             
@@ -1715,7 +1332,7 @@ Class Diagra
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:14:04" itemprop="dateModified" datetime="2019-04-26T15:14:04+08:00">2019-04-26</time>
+                <time title="修改时间：2019-05-01 12:40:42" itemprop="dateModified" datetime="2019-05-01T12:40:42+08:00">2019-05-01</time>
               
             
           </span>
@@ -1732,7 +1349,7 @@ Class Diagra
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统设计/" itemprop="url" rel="index"><span itemprop="name">系统设计</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springcloud/" itemprop="url" rel="index"><span itemprop="name">springcloud</span></a></span>
 
                 
                 
@@ -1770,18 +1387,13 @@ Class Diagra
         
           
             <p>
-              一、缓存特征命中率当某个请求能够通过访问缓存而得到响应时，称为缓存命中。
-缓存命中率越高，缓存的利用率也就越高。
-最大空间缓存通常位于内存中，内存的空间通常比磁盘空间小的多，因此缓存的最大空间不可能非常大。
-当缓存存放的数据量超过最大空间时，就需要淘汰部分数据来存放新到达的数据。
-淘汰策略
-FIFO
+              为了提高服务的可用性，我们一般会将相同的服务部署多个实例，负载均衡的作用就是使获取服务的请求被均衡的分配到各个实例中。负载均衡一般分为服务端负载均衡和客户端负载均衡，服务端的负载均衡通过硬件（如F5）或者软件（如Nginx）来实现，而Ribbon实现的是客户端负载均衡。服务端负载均衡是在硬件设备或者
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/01/缓存/#more" rel="contents">
+              <a class="btn" href="/2019/03/11/Ribbon/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1841,7 +1453,7 @@ FIFO
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/12/01/网络层/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/11/监控Dubbo服务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1861,7 +1473,7 @@ FIFO
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/01/网络层/" class="post-title-link" itemprop="url">网络层</a>
+                <a href="/2019/03/11/监控Dubbo服务/" class="post-title-link" itemprop="url">监控Dubbo服务</a>
               
             
           </h1>
@@ -1886,7 +1498,7 @@ FIFO
                 
               
 
-              <time title="创建时间：2018-12-01 11:07:10" itemprop="dateCreated datePublished" datetime="2018-12-01T11:07:10+08:00">2018-12-01</time>
+              <time title="创建时间：2019-03-11 12:11:39" itemprop="dateCreated datePublished" datetime="2019-03-11T12:11:39+08:00">2019-03-11</time>
             
 
             
@@ -1903,7 +1515,7 @@ FIFO
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:13:47" itemprop="dateModified" datetime="2019-04-26T15:13:47+08:00">2019-04-26</time>
+                <time title="修改时间：2019-05-01 12:18:54" itemprop="dateModified" datetime="2019-05-01T12:18:54+08:00">2019-05-01</time>
               
             
           </span>
@@ -1920,7 +1532,7 @@ FIFO
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
 
                 
                 
@@ -1958,18 +1570,13 @@ FIFO
         
           
             <p>
-              概述因为网络层是整个互联网的核心，因此应当让网络层尽可能简单。网络层向上只提供简单灵活的、无连接的、尽最大努力交互的数据报服务。
-使用 IP 协议，可以把异构的物理网络连接起来，使得在网络层看起来好像是一个统一的网络。
-
-与 IP 协议配套使用的还有三个协议：
-
-地址解析协议 ARP（Address
+              Dubbo给我们提供了dubbo-admin和dubbo-monitor-simple用于监控Dubbo服务，可以用来监控接口暴露，注册情况，也可以显示接口的调用明细和调用时间。dubbo-admin和dubbo-monitor-simple的下载地址为：https://github.com/apa
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/01/网络层/#more" rel="contents">
+              <a class="btn" href="/2019/03/11/监控Dubbo服务/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2029,7 +1636,7 @@ FIFO
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/17/数据库事务/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/09/SpringCloudEureka服务治理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -2049,7 +1656,7 @@ FIFO
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/11/17/数据库事务/" class="post-title-link" itemprop="url">数据库事务</a>
+                <a href="/2019/03/09/SpringCloudEureka服务治理/" class="post-title-link" itemprop="url">SpringCloudEureka服务治理</a>
               
             
           </h1>
@@ -2074,7 +1681,7 @@ FIFO
                 
               
 
-              <time title="创建时间：2018-11-17 19:27:09" itemprop="dateCreated datePublished" datetime="2018-11-17T19:27:09+08:00">2018-11-17</time>
+              <time title="创建时间：2019-03-09 12:24:39" itemprop="dateCreated datePublished" datetime="2019-03-09T12:24:39+08:00">2019-03-09</time>
             
 
             
@@ -2091,7 +1698,7 @@ FIFO
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:18:23" itemprop="dateModified" datetime="2019-04-26T15:18:23+08:00">2019-04-26</time>
+                <time title="修改时间：2019-05-01 12:34:44" itemprop="dateModified" datetime="2019-05-01T12:34:44+08:00">2019-05-01</time>
               
             
           </span>
@@ -2108,7 +1715,7 @@ FIFO
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springcloud/" itemprop="url" rel="index"><span itemprop="name">springcloud</span></a></span>
 
                 
                 
@@ -2146,26 +1753,379 @@ FIFO
         
           
             <p>
-              数据库事务数据库事务是数据库管理系统执行过程中的一个逻辑单位，由一个有限的数据库操作序列构成；事务需要满足ACID特性。
-ACID并非任意的对数据库的操作序列都是数据库事务。数据库事务拥有以下四个特性，习惯上被称之为ACID特性。
-
-
-
-
-名称
-内容
-
-
-
-
-原子性（Atomicity）
-事务作为一
+              考虑当前有两个微服务实例A和B，A服务需要调用B服务的某个REST接口。假如某一天B服务迁移到了另外一台服务器，IP和端口也发生了变化，这时候我们不得不去修改A服务中调用B服务REST接口的静态配置。随着公司业务的发展，微服务的数量也越来越多，服务间的关系可能变得非常复杂，传统的微服务维护变得愈加困
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/11/17/数据库事务/#more" rel="contents">
+              <a class="btn" href="/2019/03/09/SpringCloudEureka服务治理/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/05/SpringCloud与微服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/05/SpringCloud与微服务/" class="post-title-link" itemprop="url">SpringCloud与微服务</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-05 12:19:55" itemprop="dateCreated datePublished" datetime="2019-03-05T12:19:55+08:00">2019-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-01 18:29:02" itemprop="dateModified" datetime="2019-05-01T18:29:02+08:00">2019-05-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springcloud/" itemprop="url" rel="index"><span itemprop="name">springcloud</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              在传统的软件架构中，我们通常采用的是单体应用来构建一个系统，一个单体应用糅合了各种业务模块。起初在业务规模不是很大的情况下，对于单体应用的开发维护也相对容易。但随着企业的发展，业务规模与日递增，单体应用变得愈发臃肿。由于单体应用将各种业务模块聚合在一起，并且部署在一个进程内，所以通常我们对其中一个业
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/05/SpringCloud与微服务/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2019/03/01/Mybatis通用Mapper和PageHelper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/01/Mybatis通用Mapper和PageHelper/" class="post-title-link" itemprop="url">Mybatis通用Mapper和PageHelper</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-01 16:38:59" itemprop="dateCreated datePublished" datetime="2019-03-01T16:38:59+08:00">2019-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-30 16:44:10" itemprop="dateModified" datetime="2019-04-30T16:44:10+08:00">2019-04-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              如果项目中使用到了MyBatis框架，那么使用通用Mapper和PageHelper分页插件将极大的简化我们的操作。通用Mapper可以简化对单表的CRUD操作，PageHelper分页插件可以帮我们自动拼接分页SQL，并且可以使用MyBatis Geneator来自动生成实体类，Mapper接口和
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/Mybatis通用Mapper和PageHelper/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2214,7 +2174,7 @@ ACID并非任意的对数据库的操作序列都是数据库事务。数据库�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2256,7 +2216,7 @@ ACID并非任意的对数据库的操作序列都是数据库事务。数据库�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">150</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2299,7 +2259,15 @@ ACID并非任意的对数据库的操作序列都是数据库事务。数据库�
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2528,7 +2496,129 @@ ACID并非任意的对数据库的操作序列都是数据库事务。数据库�
                     
                       
                     
-                    <span class="site-state-item-count">106</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">167</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

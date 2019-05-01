@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/19/JavaIO/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/06/单点登陆/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -369,7 +369,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/19/JavaIO/" class="post-title-link" itemprop="url">JavaIO</a>
+                <a href="/2018/11/06/单点登陆/" class="post-title-link" itemprop="url">单点登陆</a>
               
             
           </h1>
@@ -394,7 +394,7 @@
                 
               
 
-              <time title="创建时间：2018-01-19 18:32:23" itemprop="dateCreated datePublished" datetime="2018-01-19T18:32:23+08:00">2018-01-19</time>
+              <time title="创建时间：2018-11-06 16:31:51" itemprop="dateCreated datePublished" datetime="2018-11-06T16:31:51+08:00">2018-11-06</time>
             
 
             
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:26:37" itemprop="dateModified" datetime="2019-04-26T15:26:37+08:00">2019-04-26</time>
+                <time title="修改时间：2019-05-01 16:34:55" itemprop="dateModified" datetime="2019-05-01T16:34:55+08:00">2019-05-01</time>
               
             
           </span>
@@ -428,7 +428,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shiro/" itemprop="url" rel="index"><span itemprop="name">shiro</span></a></span>
 
                 
                 
@@ -466,22 +466,13 @@
         
           
             <p>
-              一、概览Java 的 I/O 大概可以分成以下几类：
-
-磁盘操作：File
-字节操作：InputStream 和 OutputStream
-字符操作：Reader 和 Writer
-对象操作：Serializable
-网络操作：Socket
-新的输入/输出：NIO
-
-二、磁盘操作File 类可以用于
+              单点登录Shiro 1.2 开始提供了 Jasig CAS 单点登录的支持，单点登录主要用于多系统集成，即在多个系统中，用户只需要到一个中央服务器登录一次即可访问这些系统中的任何一个，无须多次登录。此处我们使用 Jasig CAS v4.0.0-RC3 版本：https://github.com/J
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/19/JavaIO/#more" rel="contents">
+              <a class="btn" href="/2018/11/06/单点登陆/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -541,7 +532,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/15/AOP/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/06/INI配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -561,7 +552,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/15/AOP/" class="post-title-link" itemprop="url">AOP</a>
+                <a href="/2018/11/06/INI配置/" class="post-title-link" itemprop="url">INI配置</a>
               
             
           </h1>
@@ -586,7 +577,7 @@
                 
               
 
-              <time title="创建时间：2018-01-15 16:34:08" itemprop="dateCreated datePublished" datetime="2018-01-15T16:34:08+08:00">2018-01-15</time>
+              <time title="创建时间：2018-11-06 13:11:43" itemprop="dateCreated datePublished" datetime="2018-11-06T13:11:43+08:00">2018-11-06</time>
             
 
             
@@ -603,11 +594,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-28 16:37:36" itemprop="dateModified" datetime="2019-04-28T16:37:36+08:00">2019-04-28</time>
+                <time title="修改时间：2019-05-01 13:13:21" itemprop="dateModified" datetime="2019-05-01T13:13:21+08:00">2019-05-01</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shiro/" itemprop="url" rel="index"><span itemprop="name">shiro</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -640,17 +649,14 @@
         
           
             <p>
-              AOP概念AOP(Aspect-Oriented Programming)是面向切面编程的简称，定义如下：
-
-计算机科学中,AOP是一种编程范式，通过分离横切关注点点来增加模块性。它可以在已有的代码上增加额外的行为，却不需要修改已有的代码，而是通过指定代码的切点来实现。
-
-JoinPoint(连接点
+              INI 配置之前章节我们已经接触过一些 INI 配置规则了，如果大家使用过如 Spring 之类的 IoC/DI 容器的话，Shiro 提供的 INI 配置也是非常类似的，即可以理解为是一个 IoC/DI 容器，但是区别在于它从一个根对象 securityManager 开始。
+根对象 Securi
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/15/AOP/#more" rel="contents">
+              <a class="btn" href="/2018/11/06/INI配置/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -710,7 +716,7 @@ JoinPoint(连接点
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/13/Spring注解/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/05/SSL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -730,7 +736,7 @@ JoinPoint(连接点
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/13/Spring注解/" class="post-title-link" itemprop="url">Spring注解</a>
+                <a href="/2018/11/05/SSL/" class="post-title-link" itemprop="url">SSL</a>
               
             
           </h1>
@@ -755,7 +761,7 @@ JoinPoint(连接点
                 
               
 
-              <time title="创建时间：2018-01-13 16:09:00" itemprop="dateCreated datePublished" datetime="2018-01-13T16:09:00+08:00">2018-01-13</time>
+              <time title="创建时间：2018-11-05 16:30:31" itemprop="dateCreated datePublished" datetime="2018-11-05T16:30:31+08:00">2018-11-05</time>
             
 
             
@@ -772,7 +778,7 @@ JoinPoint(连接点
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-30 11:33:53" itemprop="dateModified" datetime="2019-04-30T11:33:53+08:00">2019-04-30</time>
+                <time title="修改时间：2019-05-01 16:31:31" itemprop="dateModified" datetime="2019-05-01T16:31:31+08:00">2019-05-01</time>
               
             
           </span>
@@ -789,7 +795,7 @@ JoinPoint(连接点
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shiro/" itemprop="url" rel="index"><span itemprop="name">shiro</span></a></span>
 
                 
                 
@@ -827,25 +833,14 @@ JoinPoint(连接点
         
           
             <p>
-              Spring中注解大全和应用
-
-@Controller
-@RestController：
-@Service
-@Autowired
-@RequestMapping
-@RequestParam
-@ModelAttribute
-@Cacheable
-@CacheEvict
-@Resource
-@PostC
+              SSL对于 SSL 的支持，Shiro 只是判断当前 url 是否需要 SSL 登录，如果需要自动重定向到 https 进行访问。
+首先生成数字证书，生成证书到 D:\localhost.keystore使用 JDK 的 keytool 命令，生成证书（包含证书 / 公钥 / 私钥）到 D:\loc
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/13/Spring注解/#more" rel="contents">
+              <a class="btn" href="/2018/11/05/SSL/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -905,7 +900,7 @@ JoinPoint(连接点
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/13/事务隔离级别/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/05/授权/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -925,7 +920,7 @@ JoinPoint(连接点
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/13/事务隔离级别/" class="post-title-link" itemprop="url">事务隔离级别</a>
+                <a href="/2018/11/05/授权/" class="post-title-link" itemprop="url">授权</a>
               
             
           </h1>
@@ -950,7 +945,7 @@ JoinPoint(连接点
                 
               
 
-              <time title="创建时间：2018-01-13 12:53:36" itemprop="dateCreated datePublished" datetime="2018-01-13T12:53:36+08:00">2018-01-13</time>
+              <time title="创建时间：2018-11-05 13:07:27" itemprop="dateCreated datePublished" datetime="2018-11-05T13:07:27+08:00">2018-11-05</time>
             
 
             
@@ -967,7 +962,7 @@ JoinPoint(连接点
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:23:38" itemprop="dateModified" datetime="2019-04-26T15:23:38+08:00">2019-04-26</time>
+                <time title="修改时间：2019-05-01 13:11:01" itemprop="dateModified" datetime="2019-05-01T13:11:01+08:00">2019-05-01</time>
               
             
           </span>
@@ -984,7 +979,7 @@ JoinPoint(连接点
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shiro/" itemprop="url" rel="index"><span itemprop="name">shiro</span></a></span>
 
                 
                 
@@ -1022,27 +1017,14 @@ JoinPoint(连接点
         
           
             <p>
-              
-为了解决多个事务并发引起的问题，进行并发控制。数据库系统提供了四种事务隔离级别供用户选择。
-
-第一类丢失更新定义：A事务撤销时，把已经提交的B事务的更新数据覆盖了。
-第二类丢失更新A事务提交时，把已经提交的B事务的更新数据覆盖了。
-
-
-
-名称
-内容
-
-
-
-
-读未提交（Read Uncommitte
+              授权授权，也叫访问控制，即在应用中控制谁能访问哪些资源（如访问页面/编辑数据/页面操作等）。在授权中需了解的几个关键对象：主体（Subject）、资源（Resource）、权限（Permission）、角色（Role）。
+主体主体，即访问应用的用户，在 Shiro 中使用 Subject 代表该用户
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/13/事务隔离级别/#more" rel="contents">
+              <a class="btn" href="/2018/11/05/授权/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1102,7 +1084,7 @@ JoinPoint(连接点
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/11/ER图/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/05/队列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1122,7 +1104,7 @@ JoinPoint(连接点
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/11/ER图/" class="post-title-link" itemprop="url">ER图</a>
+                <a href="/2018/11/05/队列/" class="post-title-link" itemprop="url">队列</a>
               
             
           </h1>
@@ -1147,7 +1129,7 @@ JoinPoint(连接点
                 
               
 
-              <time title="创建时间：2018-01-11 17:34:10" itemprop="dateCreated datePublished" datetime="2018-01-11T17:34:10+08:00">2018-01-11</time>
+              <time title="创建时间：2018-11-05 10:56:53" itemprop="dateCreated datePublished" datetime="2018-11-05T10:56:53+08:00">2018-11-05</time>
             
 
             
@@ -1164,7 +1146,7 @@ JoinPoint(连接点
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:27:12" itemprop="dateModified" datetime="2019-04-26T15:27:12+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:10:11" itemprop="dateModified" datetime="2019-04-26T15:10:11+08:00">2019-04-26</time>
               
             
           </span>
@@ -1181,7 +1163,7 @@ JoinPoint(连接点
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
 
                 
                 
@@ -1219,40 +1201,16 @@ JoinPoint(连接点
         
           
             <p>
-              
-本篇博客介绍ER图的相关内容
-
-ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，提供了表示实体类型、属性和联系的方法，用来描述现实世界的概念模型。
-
-
-
-
-符号
-表示类型
-
-
-
-
-矩形框
-实体
-
-
-椭圆图框
-属性
-
-
-菱形框
-联系
-
-
-
-用“矩形
+              先入先出的数据结构
+在 FIFO 数据结构中，将首先处理添加到队列中的第一个元素。
+如上图所示，队列是典型的 FIFO 数据结构。插入（insert）操作也称作入队（enqueue），新元素始终被添加在队列的末尾。 删除（delete）操作也被称为出队（dequeue)。 你只能移除第一个元素。
+队
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/11/ER图/#more" rel="contents">
+              <a class="btn" href="/2018/11/05/队列/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1312,7 +1270,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/11/DI/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/03/OAuth2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1332,7 +1290,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/11/DI/" class="post-title-link" itemprop="url">DI</a>
+                <a href="/2018/11/03/OAuth2/" class="post-title-link" itemprop="url">OAuth2</a>
               
             
           </h1>
@@ -1357,7 +1315,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
                 
               
 
-              <time title="创建时间：2018-01-11 16:28:49" itemprop="dateCreated datePublished" datetime="2018-01-11T16:28:49+08:00">2018-01-11</time>
+              <time title="创建时间：2018-11-03 16:36:22" itemprop="dateCreated datePublished" datetime="2018-11-03T16:36:22+08:00">2018-11-03</time>
             
 
             
@@ -1374,7 +1332,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-30 11:33:12" itemprop="dateModified" datetime="2019-04-30T11:33:12+08:00">2019-04-30</time>
+                <time title="修改时间：2019-05-01 16:40:52" itemprop="dateModified" datetime="2019-05-01T16:40:52+08:00">2019-05-01</time>
               
             
           </span>
@@ -1391,7 +1349,7 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shiro/" itemprop="url" rel="index"><span itemprop="name">shiro</span></a></span>
 
                 
                 
@@ -1429,392 +1387,13 @@ ER图的基本介绍E-R图也称实体-联系图(Entity Relationship Diagram)，
         
           
             <p>
-              解释DI即依赖注入
-IOC：也即控制反转，DI即依赖注入，控制反转IOC和依赖注入DI其实就是同个概念的两个不同角度的解释。
-
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/01/11/DI/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/11/IOC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="java blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/11/IOC/" class="post-title-link" itemprop="url">IOC</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-01-11 16:24:16" itemprop="dateCreated datePublished" datetime="2018-01-11T16:24:16+08:00">2018-01-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-30 11:34:17" itemprop="dateModified" datetime="2019-04-30T11:34:17+08:00">2019-04-30</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              解释IoC(Inversion of Control)控制反转，包含了两个方面：控制、反转。
-
-控制指的是：当前对象对内部成员的控制权。
-反转指的是：这种控制权不由当前对象管理了，由其他(类,第三方容器)来管理。
-
-IOC容器Bean工厂，创建并管理bean。
-
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/01/11/IOC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/11/事务并发一致性问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="java blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/11/事务并发一致性问题/" class="post-title-link" itemprop="url">事务并发一致性问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-01-11 11:17:06" itemprop="dateCreated datePublished" datetime="2018-01-11T11:17:06+08:00">2018-01-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-26 15:24:00" itemprop="dateModified" datetime="2019-04-26T15:24:00+08:00">2019-04-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              
-在并发环境下，事务的隔离性很难保证，因此会出现很多并发一致性问题。
-
-丢失修改T1 和 T2 两个事务都对一个数据进行修改，T1 先修改，T2 随后修改，T2 的修改覆盖了 T1 的修改。
-
-读脏数据T1 修改一个数据，T2 随后读取这个数据。如果 T1 撤销了这次修改，那么 T2 读取的数据是脏
+              OAuth2 集成目前很多开放平台如新浪微博开放平台都在使用提供开放 API 接口供开发者使用，随之带来了第三方应用要到开放平台进行授权的问题，OAuth 就是干这个的，OAuth2 是 OAuth 协议的下一个版本，相比 OAuth1，OAuth2 整个授权流程更简单安全了，但不兼容 OAuth1
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/11/事务并发一致性问题/#more" rel="contents">
+              <a class="btn" href="/2018/11/03/OAuth2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1874,7 +1453,7 @@ IOC容器Bean工厂，创建并管理bean。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/01/03/Socket/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/03/rememberMe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -1894,7 +1473,7 @@ IOC容器Bean工厂，创建并管理bean。
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/01/03/Socket/" class="post-title-link" itemprop="url">Socket</a>
+                <a href="/2018/11/03/rememberMe/" class="post-title-link" itemprop="url">rememberMe</a>
               
             
           </h1>
@@ -1919,7 +1498,7 @@ IOC容器Bean工厂，创建并管理bean。
                 
               
 
-              <time title="创建时间：2018-01-03 12:31:39" itemprop="dateCreated datePublished" datetime="2018-01-03T12:31:39+08:00">2018-01-03</time>
+              <time title="创建时间：2018-11-03 16:29:17" itemprop="dateCreated datePublished" datetime="2018-11-03T16:29:17+08:00">2018-11-03</time>
             
 
             
@@ -1936,7 +1515,7 @@ IOC容器Bean工厂，创建并管理bean。
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:24:39" itemprop="dateModified" datetime="2019-04-26T15:24:39+08:00">2019-04-26</time>
+                <time title="修改时间：2019-05-01 16:30:09" itemprop="dateModified" datetime="2019-05-01T16:30:09+08:00">2019-05-01</time>
               
             
           </span>
@@ -1953,7 +1532,7 @@ IOC容器Bean工厂，创建并管理bean。
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shiro/" itemprop="url" rel="index"><span itemprop="name">shiro</span></a></span>
 
                 
                 
@@ -1991,21 +1570,15 @@ IOC容器Bean工厂，创建并管理bean。
         
           
             <p>
-              一、I/O 模型一个输入操作通常包括两个阶段：
+              RememberMeShiro 提供了记住我（RememberMe）的功能，比如访问如淘宝等一些网站时，关闭了浏览器下次再打开时还是能记住你是谁，下次访问时无需再登录即可访问，基本流程如下：
 
-等待数据准备好
-从内核向进程复制数据
-
-对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所等待数据到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区复制到应用进程缓冲区。
-Unix 有五种 I/O 模型：
-
-阻塞式 
+首先在登录页面选中 RememberMe 然后登录成功；如果是浏览器登录，一般会把 RememberMe 
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/01/03/Socket/#more" rel="contents">
+              <a class="btn" href="/2018/11/03/rememberMe/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2065,7 +1638,7 @@ Unix 有五种 I/O 模型：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2017/12/25/分治算法/">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/03/集群/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -2085,7 +1658,7 @@ Unix 有五种 I/O 模型：
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2017/12/25/分治算法/" class="post-title-link" itemprop="url">分治算法</a>
+                <a href="/2018/11/03/集群/" class="post-title-link" itemprop="url">集群</a>
               
             
           </h1>
@@ -2110,7 +1683,7 @@ Unix 有五种 I/O 模型：
                 
               
 
-              <time title="创建时间：2017-12-25 17:16:20" itemprop="dateCreated datePublished" datetime="2017-12-25T17:16:20+08:00">2017-12-25</time>
+              <time title="创建时间：2018-11-03 15:23:15" itemprop="dateCreated datePublished" datetime="2018-11-03T15:23:15+08:00">2018-11-03</time>
             
 
             
@@ -2127,7 +1700,7 @@ Unix 有五种 I/O 模型：
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-26 15:22:24" itemprop="dateModified" datetime="2019-04-26T15:22:24+08:00">2019-04-26</time>
+                <time title="修改时间：2019-04-26 15:27:30" itemprop="dateModified" datetime="2019-04-26T15:27:30+08:00">2019-04-26</time>
               
             
           </span>
@@ -2144,7 +1717,7 @@ Unix 有五种 I/O 模型：
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/系统设计/" itemprop="url" rel="index"><span itemprop="name">系统设计</span></a></span>
 
                 
                 
@@ -2182,14 +1755,390 @@ Unix 有五种 I/O 模型：
         
           
             <p>
-              基本概念在计算机科学中，分治法是一种很重要的算法。字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题……直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。
-基本思想及策略分治法的设计思想是：将一个难以直接解决的大问题，分割成一
+              一、负载均衡集群中的应用服务器（节点）通常被设计成无状态，用户可以请求任何一个节点。
+负载均衡器会根据集群中每个节点的负载情况，将用户请求转发到合适的节点上。
+负载均衡器可以用来实现高可用以及伸缩性：
+
+高可用：当某个节点故障时，负载均衡器会将用户请求转发到另外的节点上，从而保证所有服务持续可用；
+
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2017/12/25/分治算法/#more" rel="contents">
+              <a class="btn" href="/2018/11/03/集群/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/03/身份验证/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/03/身份验证/" class="post-title-link" itemprop="url">身份验证</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-03 13:02:40" itemprop="dateCreated datePublished" datetime="2018-11-03T13:02:40+08:00">2018-11-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-01 13:07:03" itemprop="dateModified" datetime="2019-05-01T13:07:03+08:00">2019-05-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shiro/" itemprop="url" rel="index"><span itemprop="name">shiro</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              身份验证身份验证，即在应用中谁能证明他就是他本人。一般提供如他们的身份 ID 一些标识信息来表明他就是他本人，如提供身份证，用户名 / 密码来证明。
+在 shiro 中，用户需要提供 principals （身份）和 credentials（证明）给 shiro，从而应用能验证用户身份：
+princ
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/03/身份验证/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/11/01/进程管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/01/进程管理/" class="post-title-link" itemprop="url">进程管理</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-01 17:47:37" itemprop="dateCreated datePublished" datetime="2018-11-01T17:47:37+08:00">2018-11-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-26 15:11:10" itemprop="dateModified" datetime="2019-04-26T15:11:10+08:00">2019-04-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              进程与线程1. 进程进程是资源分配的基本单位。
+进程控制块 (Process Control Block, PCB) 描述进程的基本信息和运行状态，所谓的创建进程和撤销进程，都是指对 PCB 的操作。
+下图显示了 4 个程序创建了 4 个进程，这 4 个进程可以并发地执行。
+
+2. 线程线程是独立调
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/01/进程管理/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2238,7 +2187,7 @@ Unix 有五种 I/O 模型：
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2280,7 +2229,7 @@ Unix 有五种 I/O 模型：
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">150</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2323,7 +2272,15 @@ Unix 有五种 I/O 模型：
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2552,7 +2509,129 @@ Unix 有五种 I/O 模型：
                     
                       
                     
-                    <span class="site-state-item-count">106</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">167</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
