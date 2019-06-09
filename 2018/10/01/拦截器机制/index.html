@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="拦截器机制拦截器介绍Shiro 使用了与 Servlet 一样的 Filter 接口进行扩展；所以如果对 Filter 不熟悉可以参考《Servlet 3.1 规范》http://www.iteye.com/blogs/subjects/Servlet-3-1了解 Filter 的工作原理。首先下图是 Shiro 拦截器的基础类图：  1、NameableFilterNameableFilter">
+<meta name="keywords" content="拦截器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拦截器机制">
+<meta property="og:url" content="https://javacreator1.github.io/2018/10/01/拦截器机制/index.html">
+<meta property="og:site_name" content="java blog">
+<meta property="og:description" content="拦截器机制拦截器介绍Shiro 使用了与 Servlet 一样的 Filter 接口进行扩展；所以如果对 Filter 不熟悉可以参考《Servlet 3.1 规范》http://www.iteye.com/blogs/subjects/Servlet-3-1了解 Filter 的工作原理。首先下图是 Shiro 拦截器的基础类图：  1、NameableFilterNameableFilter">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://javacreator1.github.io/images/lanjieqi_one.png">
+<meta property="og:updated_time" content="2019-05-01T08:20:14.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="拦截器机制">
+<meta name="twitter:description" content="拦截器机制拦截器介绍Shiro 使用了与 Servlet 一样的 Filter 接口进行扩展；所以如果对 Filter 不熟悉可以参考《Servlet 3.1 规范》http://www.iteye.com/blogs/subjects/Servlet-3-1了解 Filter 的工作原理。首先下图是 Shiro 拦截器的基础类图：  1、NameableFilterNameableFilter">
+<meta name="twitter:image" content="https://javacreator1.github.io/images/lanjieqi_one.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://javacreator1.github.io/2018/10/01/拦截器机制/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>拦截器机制 | java blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/javacreator1"><img style="position:absolute;top:0;right:0;border:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">java blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://javacreator1.github.io/2018/10/01/拦截器机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="java blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">拦截器机制
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-01 16:18:22" itemprop="dateCreated datePublished" datetime="2018-10-01T16:18:22+08:00">2018-10-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-01 16:20:14" itemprop="dateModified" datetime="2019-05-01T16:20:14+08:00">2019-05-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shiro/" itemprop="url" rel="index"><span itemprop="name">shiro</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="拦截器机制"><a href="#拦截器机制" class="headerlink" title="拦截器机制"></a>拦截器机制</h1><h2 id="拦截器介绍"><a href="#拦截器介绍" class="headerlink" title="拦截器介绍"></a>拦截器介绍</h2><p>Shiro 使用了与 Servlet 一样的 Filter 接口进行扩展；所以如果对 Filter 不熟悉可以参考《Servlet 3.1 规范》<a href="http://www.iteye.com/blogs/subjects/Servlet-3-1" target="_blank" rel="noopener">http://www.iteye.com/blogs/subjects/Servlet-3-1</a>了解 Filter 的工作原理。首先下图是 Shiro 拦截器的基础类图：</p>
+<p><img src="\images\lanjieqi_one.png" alt></p>
+<p><strong>1、NameableFilter</strong><br>NameableFilter 给 Filter 起个名字，如果没有设置默认就是 FilterName；还记得之前的如 authc 吗？当我们组装拦截器链时会根据这个名字找到相应的拦截器实例；</p>
+<p><strong>2、OncePerRequestFilter</strong><br>OncePerRequestFilter 用于防止多次执行 Filter 的；也就是说一次请求只会走一次拦截器链；另外提供 enabled 属性，表示是否开启该拦截器实例，默认 enabled=true 表示开启，如果不想让某个拦截器工作，可以设置为 false 即可。</p>
+<p><strong>3、ShiroFilter</strong><br>ShiroFilter 是整个 Shiro 的入口点，用于拦截需要安全控制的请求进行处理，这个之前已经用过了。</p>
+<p><strong>4、AdviceFilter</strong><br>AdviceFilter 提供了 AOP 风格的支持，类似于 SpringMVC 中的 Interceptor：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolean preHandle(ServletRequest request, ServletResponse response) throws Exception</span><br><span class="line">void postHandle(ServletRequest request, ServletResponse response) throws Exception</span><br><span class="line">void afterCompletion(ServletRequest request, ServletResponse response, Exception exception) throws Exception;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>preHandler：类似于 AOP 中的前置增强；在拦截器链执行之前执行；如果返回 true 则继续拦截器链；否则中断后续的拦截器链的执行直接返回；进行预处理（如基于表单的身份验证、授权）</li>
+<li>postHandle：类似于 AOP 中的后置返回增强；在拦截器链执行完成后执行；进行后处理（如记录执行时间之类的）；</li>
+<li>afterCompletion：类似于 AOP 中的后置最终增强；即不管有没有异常都会执行；可以进行清理资源（如接触 Subject 与线程的绑定之类的）；</li>
+</ul>
+<p><strong>5、PathMatchingFilter</strong></p>
+<p>PathMatchingFilter 提供了基于 Ant 风格的请求路径匹配功能及拦截器参数解析的功能，如“roles[admin,user]”自动根据“，”分割解析到一个路径参数配置并绑定到相应的路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">boolean pathsMatch(String path, ServletRequest request)</span><br><span class="line">boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>pathsMatch：该方法用于 path 与请求路径进行匹配的方法；如果匹配返回 true；<br>onPreHandle：在 preHandle 中，当 pathsMatch 匹配一个路径后，会调用 opPreHandler 方法并将路径绑定参数配置传给 mappedValue；然后可以在这个方法中进行一些验证（如角色授权），如果验证失败可以返回 false 中断流程；默认返回 true；也就是说子类可以只实现 onPreHandle 即可，无须实现 preHandle。如果没有 path 与请求路径匹配，默认是通过的（即 preHandle 返回 true）。</p>
+<p><strong>6、AccessControlFilter</strong></p>
+<p>AccessControlFilter 提供了访问控制的基础功能；比如是否允许访问/当访问拒绝时如何处理等：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">abstract boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception;</span><br><span class="line">boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception;</span><br><span class="line">abstract boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>isAccessAllowed：表示是否允许访问；mappedValue 就是[urls]配置中拦截器参数部分，如果允许访问返回 true，否则 false；</p>
+<p>onAccessDenied：表示当访问拒绝时是否已经处理了；如果返回 true 表示需要继续处理；如果返回 false 表示该拦截器实例已经处理了，将直接返回即可。</p>
+<p>onPreHandle 会自动调用这两个方法决定是否继续处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception &#123;</span><br><span class="line">    return isAccessAllowed(request, response, mappedValue) || onAccessDenied(request, response, mappedValue);</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>另外 AccessControlFilter 还提供了如下方法用于处理如登录成功后/重定向到上一个请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void setLoginUrl(String loginUrl) //身份验证时使用，默认/login.jsp</span><br><span class="line">String getLoginUrl()</span><br><span class="line">Subject getSubject(ServletRequest request, ServletResponse response) //获取Subject 实例</span><br><span class="line">boolean isLoginRequest(ServletRequest request, ServletResponse response)//当前请求是否是登录请求</span><br><span class="line">void saveRequestAndRedirectToLogin(ServletRequest request, ServletResponse response) throws IOException //将当前请求保存起来并重定向到登录页面</span><br><span class="line">void saveRequest(ServletRequest request) //将请求保存起来，如登录成功后再重定向回该请求</span><br><span class="line">void redirectToLogin(ServletRequest request, ServletResponse response) //重定向到登录页面&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>比如基于表单的身份验证就需要使用这些功能。</p>
+<p>到此基本的拦截器就完事了，如果我们想进行访问访问的控制就可以继承 AccessControlFilter；如果我们要添加一些通用数据我们可以直接继承 PathMatchingFilter。</p>
+<h2 id="拦截器链"><a href="#拦截器链" class="headerlink" title="拦截器链"></a>拦截器链</h2><p>Shiro 对 Servlet 容器的 FilterChain 进行了代理，即 ShiroFilter 在继续 Servlet 容器的 Filter 链的执行之前，通过 ProxiedFilterChain 对 Servlet 容器的 FilterChain 进行了代理；即先走 Shiro 自己的 Filter 体系，然后才会委托给 Servlet 容器的 FilterChain 进行 Servlet 容器级别的 Filter 链执行；Shiro 的 ProxiedFilterChain 执行流程：1、先执行 Shiro 自己的 Filter 链；2、再执行 Servlet 容器的 Filter 链（即原始的 Filter）。</p>
+<p>而 ProxiedFilterChain 是通过 FilterChainResolver 根据配置文件中[urls]部分是否与请求的 URL 是否匹配解析得到的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FilterChain getChain(ServletRequest request, ServletResponse response, FilterChain originalChain);</span><br></pre></td></tr></table></figure>
+<p>即传入原始的 chain 得到一个代理的 chain。</p>
+<p>Shiro 内部提供了一个路径匹配的 FilterChainResolver 实现：PathMatchingFilterChainResolver，其根据[urls]中配置的 url 模式（默认 Ant 风格）=拦截器链和请求的 url 是否匹配来解析得到配置的拦截器链的；而 PathMatchingFilterChainResolver 内部通过 FilterChainManager 维护着拦截器链，比如 DefaultFilterChainManager 实现维护着 url 模式与拦截器链的关系。因此我们可以通过 FilterChainManager 进行动态动态增加 url 模式与拦截器链的关系。</p>
+<p>DefaultFilterChainManager 会默认添加 org.apache.shiro.web.filter.mgt.DefaultFilter 中声明的拦截器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public enum DefaultFilter &#123;</span><br><span class="line">    anon(AnonymousFilter.class),</span><br><span class="line">    authc(FormAuthenticationFilter.class),</span><br><span class="line">    authcBasic(BasicHttpAuthenticationFilter.class),</span><br><span class="line">    logout(LogoutFilter.class),</span><br><span class="line">    noSessionCreation(NoSessionCreationFilter.class),</span><br><span class="line">    perms(PermissionsAuthorizationFilter.class),</span><br><span class="line">    port(PortFilter.class),</span><br><span class="line">    rest(HttpMethodPermissionFilter.class),</span><br><span class="line">    roles(RolesAuthorizationFilter.class),</span><br><span class="line">    ssl(SslFilter.class),</span><br><span class="line">    user(UserFilter.class);</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>下一节会介绍这些拦截器的作用。</p>
+<p>如果要注册自定义拦截器，IniSecurityManagerFactory/WebIniSecurityManagerFactory 在启动时会自动扫描 ini 配置文件中的 [filters]/[main] 部分并注册这些拦截器到 DefaultFilterChainManager；且创建相应的 url 模式与其拦截器关系链。如果使用 Spring 后续章节会介绍如果注册自定义拦截器。</p>
+<p>如果想自定义 FilterChainResolver，可以通过实现 WebEnvironment 接口完成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class MyIniWebEnvironment extends IniWebEnvironment &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected FilterChainResolver createFilterChainResolver() &#123;</span><br><span class="line">        //在此处扩展自己的FilterChainResolver</span><br><span class="line">        return super.createFilterChainResolver();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>FilterChain 之间的关系。如果想动态实现 url -拦截器的注册，就可以通过实现此处的 FilterChainResolver 来完成，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//1、创建 FilterChainResolver</span><br><span class="line">PathMatchingFilterChainResolver filterChainResolver =</span><br><span class="line">        new PathMatchingFilterChainResolver();</span><br><span class="line">//2、创建 FilterChainManager</span><br><span class="line">DefaultFilterChainManager filterChainManager = new DefaultFilterChainManager();</span><br><span class="line">//3、注册 Filter</span><br><span class="line">for(DefaultFilter filter : DefaultFilter.values()) &#123;</span><br><span class="line">    filterChainManager.addFilter(</span><br><span class="line">        filter.name(), (Filter) ClassUtils.newInstance(filter.getFilterClass()));</span><br><span class="line">&#125;</span><br><span class="line">//4、注册 URL-Filter 的映射关系</span><br><span class="line">filterChainManager.addToChain(&quot;/login.jsp&quot;, &quot;authc&quot;);</span><br><span class="line">filterChainManager.addToChain(&quot;/unauthorized.jsp&quot;, &quot;anon&quot;);</span><br><span class="line">filterChainManager.addToChain(&quot;/**&quot;, &quot;authc&quot;);</span><br><span class="line">filterChainManager.addToChain(&quot;/**&quot;, &quot;roles&quot;, &quot;admin&quot;);</span><br><span class="line">//5、设置 Filter 的属性</span><br><span class="line">FormAuthenticationFilter authcFilter =</span><br><span class="line">         (FormAuthenticationFilter)filterChainManager.getFilter(&quot;authc&quot;);</span><br><span class="line">authcFilter.setLoginUrl(&quot;/login.jsp&quot;);</span><br><span class="line">RolesAuthorizationFilter rolesFilter =</span><br><span class="line">          (RolesAuthorizationFilter)filterChainManager.getFilter(&quot;roles&quot;);</span><br><span class="line">rolesFilter.setUnauthorizedUrl(&quot;/unauthorized.jsp&quot;);</span><br><span class="line">filterChainResolver.setFilterChainManager(filterChainManager);</span><br><span class="line">return filterChainResolver;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>此处自己去实现注册 filter，及url 模式与 filter 之间的映射关系。可以通过定制 FilterChainResolver 或 FilterChainManager 来完成诸如动态 URL 匹配的实现。</p>
+<p>然后再 web.xml 中进行如下配置 Environment：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;context-param&gt;</span><br><span class="line">&lt;param-name&gt;shiroEnvironmentClass&lt;/param-name&gt; &lt;param-value&gt;com.github.zhangkaitao.shiro.chapter8.web.env.MyIniWebEnvironment&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<h2 id="自定义拦截器"><a href="#自定义拦截器" class="headerlink" title="自定义拦截器"></a>自定义拦截器</h2><p>通过自定义自己的拦截器可以扩展一些功能，诸如动态 url -角色/权限访问控制的实现、根据 Subject 身份信息获取用户信息绑定到 Request（即设置通用数据）、验证码验证、在线用户信息的保存等等，因为其本质就是一个 Filter；所以 Filter 能做的它就能做。</p>
+<p>对于 Filter 的介绍请参考《Servlet规范》中的 Filter 部分：<br><a href="http://www.iteye.com/blogs/subjects/Servlet-3-1" target="_blank" rel="noopener">http://www.iteye.com/blogs/subjects/Servlet-3-1</a>。</p>
+<p><strong>1、扩展 OncePerRequestFilter</strong></p>
+<p>OncePerRequestFilter 保证一次请求只调用一次 doFilterInternal，即如内部的 forward 不会再多执行一次 doFilterInternal：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class MyOncePerRequestFilter extends OncePerRequestFilter &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void doFilterInternal(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;=========once per request filter&quot;);</span><br><span class="line">        chain.doFilter(request, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>然后再 shiro.ini 配置文件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[main]</span><br><span class="line">myFilter1=com.github.zhangkaitao.shiro.chapter8.web.filter.MyOncePerRequestFilter</span><br><span class="line">\#[filters]</span><br><span class="line">\#myFilter1=com.github.zhangkaitao.shiro.chapter8.web.filter.MyOncePerRequestFilter</span><br><span class="line">[urls]</span><br><span class="line">/**=myFilter1&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>Filter 可以在 [main] 或 [filters] 部分注册，然后在 [urls] 部分配置 url 与 filter 的映射关系即可。</p>
+<p><strong>2、扩展 AdviceFilter</strong></p>
+<p>AdviceFilter 提供了 AOP 的功能，其实现和 SpringMVC 中的 Interceptor 思想一样：具体可参考我的 SpringMVC 教程中的处理器拦截器部分：<br><a href="http://www.iteye.com/blogs/subjects/kaitao-springmvc" target="_blank" rel="noopener">http://www.iteye.com/blogs/subjects/kaitao-springmvc</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class MyAdviceFilter extends AdviceFilter &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;====预处理/前置处理&quot;);</span><br><span class="line">        return true;//返回 false 将中断后续拦截器链的执行</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    protected void postHandle(ServletRequest request, ServletResponse response) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;====后处理/后置返回处理&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void afterCompletion(ServletRequest request, ServletResponse response, Exception exception) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;====完成处理/后置最终处理&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>preHandle：进行请求的预处理，然后根据返回值决定是否继续处理（true：继续过滤器链）；可以通过它实现权限控制；</li>
+<li>postHandle：执行完拦截器链之后正常返回后执行；</li>
+<li>afterCompletion：不管最后有没有异常，afterCompletion 都会执行，完成如清理资源功能。</li>
+</ul>
+<p>然后在 shiro.ini 中进行如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[filters]</span><br><span class="line">myFilter1=com.github.zhangkaitao.shiro.chapter8.web.filter.MyOncePerRequestFilter</span><br><span class="line">myFilter2=com.github.zhangkaitao.shiro.chapter8.web.filter.MyAdviceFilter</span><br><span class="line">[urls]</span><br><span class="line">/**=myFilter1,myFilter2&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>该过滤器的具体使用可参考我的 SpringMVC 教程中的处理器拦截器部分。</p>
+<p><strong>3、PathMatchingFilter</strong></p>
+<p>PathMatchingFilter 继承了 AdviceFilter，提供了 url 模式过滤的功能，如果需要对指定的请求进行处理，可以扩展 PathMatchingFilter：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class MyPathMatchingFilter extends PathMatchingFilter &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception &#123;</span><br><span class="line">       System.out.println(&quot;url matches,config is &quot; + Arrays.toString((String[])mappedValue));</span><br><span class="line">       return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>preHandle：会进行 url 模式与请求 url 进行匹配，如果匹配会调用 onPreHandle；如果没有配置 url 模式 / 没有 url 模式匹配，默认直接返回 true；</li>
+<li>onPreHandle：如果 url 模式与请求 url 匹配，那么会执行 onPreHandle，并把该拦截器配置的参数传入。默认什么不处理直接返回 true。</li>
+</ul>
+<p>然后在 shiro.ini 中进行如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[filters]</span><br><span class="line">myFilter3=com.github.zhangkaitao.shiro.chapter8.web.filter.MyPathMatchingFilter</span><br><span class="line">[urls]</span><br><span class="line">/**= myFilter3[config]&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p><code>/**</code> 就是注册给 PathMatchingFilter 的 url 模式，config 就是拦截器的配置参数，多个之间逗号分隔，onPreHandle 使用 mappedValue 接收参数值。</p>
+<p><strong>4、扩展 AccessControlFilter</strong></p>
+<p>AccessControlFilter 继承了 PathMatchingFilter，并扩展了了两个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception &#123;</span><br><span class="line">    return isAccessAllowed(request, response, mappedValue)</span><br><span class="line">     || onAccessDenied(request, response, mappedValue);</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>isAccessAllowed：即是否允许访问，返回 true 表示允许；<br>onAccessDenied：表示访问拒绝时是否自己处理，如果返回 true 表示自己不处理且继续拦截器链执行，返回 false 表示自己已经处理了（比如重定向到另一个页面）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class MyAccessControlFilter extends AccessControlFilter &#123;</span><br><span class="line">    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;access allowed&quot;);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;访问拒绝也不自己处理，继续拦截器链的执行&quot;);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>然后在 shiro.ini 中进行如下配置：</p>
+<p><strong>5、基于表单登录拦截器</strong></p>
+<p>之前我们已经使用过 Shiro 内置的基于表单登录的拦截器了，此处自己做一个类似的基于表单登录的拦截器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">public class FormLoginFilter extends PathMatchingFilter &#123;</span><br><span class="line">    private String loginUrl = &quot;/login.jsp&quot;;</span><br><span class="line">    private String successUrl = &quot;/&quot;;</span><br><span class="line">    @Override</span><br><span class="line">    protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception &#123;</span><br><span class="line">        if(SecurityUtils.getSubject().isAuthenticated()) &#123;</span><br><span class="line">            return true;//已经登录过</span><br><span class="line">        &#125;</span><br><span class="line">        HttpServletRequest req = (HttpServletRequest) request;</span><br><span class="line">        HttpServletResponse resp = (HttpServletResponse) response;</span><br><span class="line">        if(isLoginRequest(req)) &#123;</span><br><span class="line">            if(&quot;post&quot;.equalsIgnoreCase(req.getMethod())) &#123;//form表单提交</span><br><span class="line">                boolean loginSuccess = login(req); //登录</span><br><span class="line">                if(loginSuccess) &#123;</span><br><span class="line">                    return redirectToSuccessUrl(req, resp);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;//继续过滤器链</span><br><span class="line">        &#125; else &#123;//保存当前地址并重定向到登录界面</span><br><span class="line">            saveRequestAndRedirectToLogin(req, resp);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean redirectToSuccessUrl(HttpServletRequest req, HttpServletResponse resp) throws IOException &#123;</span><br><span class="line">        WebUtils.redirectToSavedRequest(req, resp, successUrl);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    private void saveRequestAndRedirectToLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException &#123;</span><br><span class="line">        WebUtils.saveRequest(req);</span><br><span class="line">        WebUtils.issueRedirect(req, resp, loginUrl);</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean login(HttpServletRequest req) &#123;</span><br><span class="line">        String username = req.getParameter(&quot;username&quot;);</span><br><span class="line">        String password = req.getParameter(&quot;password&quot;);</span><br><span class="line">        try &#123;</span><br><span class="line">            SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            req.setAttribute(&quot;shiroLoginFailure&quot;, e.getClass());</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean isLoginRequest(HttpServletRequest req) &#123;</span><br><span class="line">        return pathsMatch(loginUrl, WebUtils.getPathWithinApplication(req));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>onPreHandle 主要流程：</p>
+<ol>
+<li>首先判断是否已经登录过了，如果已经登录过了继续拦截器链即可；</li>
+<li>如果没有登录，看看是否是登录请求，如果是 get 方法的登录页面请求，则继续拦截器链（到请求页面），否则如果是 get 方法的其他页面请求则保存当前请求并重定向到登录页面；</li>
+<li>如果是 post 方法的登录页面表单提交请求，则收集用户名 / 密码登录即可，如果失败了保存错误消息到 “shiroLoginFailure” 并返回到登录页面；</li>
+<li>如果登录成功了，且之前有保存的请求，则重定向到之前的这个请求，否则到默认的成功页面。</li>
+</ol>
+<p>shiro.ini 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[filters]</span><br><span class="line">formLogin=com.github.zhangkaitao.shiro.chapter8.web.filter.FormLoginFilter</span><br><span class="line">[urls]</span><br><span class="line">/test.jsp=formLogin</span><br><span class="line">/login.jsp=formLogin&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>启动服务器输入 <code>http://localhost:8080/chapter8/test.jsp</code> 测试时，会自动跳转到登录页面，登录成功后又会跳回到 test.jsp 页面。</p>
+<p>此处可以通过继承 AuthenticatingFilter 实现，其提供了很多登录相关的基础代码。另外可以参考 Shiro 内嵌的 FormAuthenticationFilter 的源码，思路是一样的。</p>
+<p><strong>6、任意角色授权拦截器</strong></p>
+<p>Shiro 提供 roles 拦截器，其验证用户拥有所有角色，没有提供验证用户拥有任意角色的拦截器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class AnyRolesFilter extends AccessControlFilter &#123;</span><br><span class="line">    private String unauthorizedUrl = &quot;/unauthorized.jsp&quot;;</span><br><span class="line">    private String loginUrl = &quot;/login.jsp&quot;;</span><br><span class="line">    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception &#123;</span><br><span class="line">        String[] roles = (String[])mappedValue;</span><br><span class="line">        if(roles == null) &#123;</span><br><span class="line">            return true;//如果没有设置角色参数，默认成功</span><br><span class="line">        &#125;</span><br><span class="line">        for(String role : roles) &#123;</span><br><span class="line">            if(getSubject(request, response).hasRole(role)) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;//跳到onAccessDenied处理</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception &#123;</span><br><span class="line">        Subject subject = getSubject(request, response);</span><br><span class="line">        if (subject.getPrincipal() == null) &#123;//表示没有登录，重定向到登录页面</span><br><span class="line">            saveRequest(request);</span><br><span class="line">            WebUtils.issueRedirect(request, response, loginUrl);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if (StringUtils.hasText(unauthorizedUrl)) &#123;//如果有未授权页面跳转过去</span><br><span class="line">                WebUtils.issueRedirect(request, response, unauthorizedUrl);</span><br><span class="line">            &#125; else &#123;//否则返回401未授权状态码</span><br><span class="line">                WebUtils.toHttp(response).sendError(HttpServletResponse.SC_UNAUTHORIZED);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>流程：</p>
+<ol>
+<li>首先判断用户有没有任意角色，如果没有返回 false，将到 onAccessDenied 进行处理；</li>
+<li>如果用户没有角色，接着判断用户有没有登录，如果没有登录先重定向到登录；</li>
+<li>如果用户没有角色且设置了未授权页面（unauthorizedUrl），那么重定向到未授权页面；否则直接返回 401 未授权错误码。</li>
+</ol>
+<p>shiro.ini 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[filters]</span><br><span class="line">anyRoles=com.github.zhangkaitao.shiro.chapter8.web.filter.AnyRolesFilter</span><br><span class="line">[urls]</span><br><span class="line">/test.jsp=formLogin,anyRoles[admin,user]</span><br><span class="line">/login.jsp=formLogin&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<p>此处可以继承 AuthorizationFilter 实现，其提供了授权相关的基础代码。另外可以参考 Shiro 内嵌的 RolesAuthorizationFilter 的源码，只是实现 hasAllRoles 逻辑。</p>
+<h2 id="默认拦截器"><a href="#默认拦截器" class="headerlink" title="默认拦截器"></a>默认拦截器</h2><p>Shiro 内置了很多默认的拦截器，比如身份验证、授权等相关的。默认拦截器可以参考 org.apache.shiro.web.filter.mgt.DefaultFilter 中的枚举拦截器：</p>
+<table>
+<thead>
+<tr>
+<th>默认拦截器名</th>
+<th>拦截器类</th>
+<th>说明（括号里的表示默认值）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>身份验证相关的</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>authc</td>
+<td>org.apache.shiro.web.filter.authc.FormAuthenticationFilter</td>
+<td>基于表单的拦截器；如 “<code>/**=authc</code>”，如果没有登录会跳到相应的登录页面登录；主要属性：usernameParam：表单提交的用户名参数名（ username）；  passwordParam：表单提交的密码参数名（password）； rememberMeParam：表单提交的密码参数名（rememberMe）；  loginUrl：登录页面地址（/login.jsp）；successUrl：登录成功后的默认重定向地址； failureKeyAttribute：登录失败后错误信息存储 key（shiroLoginFailure）；</td>
+</tr>
+<tr>
+<td>authcBasic</td>
+<td>org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter</td>
+<td>Basic HTTP 身份验证拦截器，主要属性： applicationName：弹出登录框显示的信息（application）；</td>
+</tr>
+<tr>
+<td>logout</td>
+<td>org.apache.shiro.web.filter.authc.LogoutFilter</td>
+<td>退出拦截器，主要属性：redirectUrl：退出成功后重定向的地址（/）; 示例 “/logout=logout”</td>
+</tr>
+<tr>
+<td>user</td>
+<td>org.apache.shiro.web.filter.authc.UserFilter</td>
+<td>用户拦截器，用户已经身份验证 / 记住我登录的都可；示例 “/**=user”</td>
+</tr>
+<tr>
+<td>anon</td>
+<td>org.apache.shiro.web.filter.authc.AnonymousFilter</td>
+<td>匿名拦截器，即不需要登录即可访问；一般用于静态资源过滤；示例 “/static/**=anon”</td>
+</tr>
+<tr>
+<td><strong>授权相关的</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>roles</td>
+<td>org.apache.shiro.web.filter.authz.RolesAuthorizationFilter</td>
+<td>角色授权拦截器，验证用户是否拥有所有角色；主要属性： loginUrl：登录页面地址（/login.jsp）；unauthorizedUrl：未授权后重定向的地址；示例 “/admin/**=roles[admin]”</td>
+</tr>
+<tr>
+<td>perms</td>
+<td>org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter</td>
+<td>权限授权拦截器，验证用户是否拥有所有权限；属性和 roles 一样；示例 “/user/**=perms[“user:create”]”</td>
+</tr>
+<tr>
+<td>port</td>
+<td>org.apache.shiro.web.filter.authz.PortFilter</td>
+<td>端口拦截器，主要属性：port（80）：可以通过的端口；示例 “/test= port[80]”，如果用户访问该页面是非 80，将自动将请求端口改为 80 并重定向到该 80 端口，其他路径 / 参数等都一样</td>
+</tr>
+<tr>
+<td>rest</td>
+<td>org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter</td>
+<td>rest 风格拦截器，自动根据请求方法构建权限字符串（GET=read, POST=create,PUT=update,DELETE=delete,HEAD=read,TRACE=read,OPTIONS=read, MKCOL=create）构建权限字符串；示例 “/users=rest[user]”，会自动拼出“user:read,user:create,user:update,user:delete” 权限字符串进行权限匹配（所有都得匹配，isPermittedAll）；</td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>org.apache.shiro.web.filter.authz.SslFilter</td>
+<td>SSL 拦截器，只有请求协议是 https 才能通过；否则自动跳转会 https 端口（443）；其他和 port 拦截器一样；</td>
+</tr>
+<tr>
+<td><strong>其他</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>noSessionCreation</td>
+<td>org.apache.shiro.web.filter.session.NoSessionCreationFilter</td>
+<td>不创建会话拦截器，调用 subject.getSession(false) 不会有什么问题，但是如果 subject.getSession(true) 将抛出 DisabledSessionException 异常；</td>
+</tr>
+</tbody>
+</table>
+<p>另外还提供了一个 org.apache.shiro.web.filter.authz.HostFilter，即主机拦截器，比如其提供了属性：authorizedIps：已授权的 ip 地址，deniedIps：表示拒绝的 ip 地址；不过目前还没有完全实现，不可用。</p>
+<p>这些默认的拦截器会自动注册，可以直接在 ini 配置文件中通过 “拦截器名. 属性” 设置其属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perms.unauthorizedUrl=/unauthorized</span><br></pre></td></tr></table></figure>
+<p>另外如果某个拦截器不想使用了可以直接通过如下配置直接禁用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perms.enabled=false</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/拦截器/" rel="tag"># 拦截器</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/23/数据库表设计规则/" rel="next" title="数据库表设计规则">
+                <i class="fa fa-chevron-left"></i> 数据库表设计规则
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/03/JSP标签/" rel="prev" title="JSP标签">
+                JSP标签 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">158</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">180</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#拦截器机制"><span class="nav-number">1.</span> <span class="nav-text">拦截器机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拦截器介绍"><span class="nav-number">1.1.</span> <span class="nav-text">拦截器介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拦截器链"><span class="nav-number">1.2.</span> <span class="nav-text">拦截器链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义拦截器"><span class="nav-number">1.3.</span> <span class="nav-text">自定义拦截器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认拦截器"><span class="nav-number">1.4.</span> <span class="nav-text">默认拦截器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
