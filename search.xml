@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[最大子列和问题]]></title>
+    <url>%2F2019%2F06%2F09%2F%E6%9C%80%E5%A4%A7%E5%AD%90%E5%88%97%E5%92%8C%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[7-1最大子列和问题 给定K个整数组成的序列{ N1, N2, …, N**K }，“连续子列”被定义为{ N**i, N**i+1, …, N**j }，其中 1≤i≤j≤K。“最大子列和”则被定义为所有连续子列元素的和中最大者。例如给定序列{ -2, 11, -4, 13, -5, -2 }，其连续子列{ 11, -4, 13 }有最大的和20。现要求你编写程序，计算给定整数序列的最大子列和。 本题旨在测试各种不同的算法在各种数据情况下的表现。各组测试数据特点如下： 数据1：与样例等价，测试基本正确性； 数据2：102个随机整数； 数据3：103个随机整数； 数据4：104个随机整数； 数据5：105个随机整数； 输入格式:输入第1行给出正整数K (≤100000)；第2行给出K个整数，其间以空格分隔。 输出格式:在一行中输出最大子列和。如果序列中所有整数皆为负数，则输出0。 输入样例:126-2 11 -4 13 -5 -2 输出样例:120 codes123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990import java.util.Scanner;public class Main &#123; public static void main(String[] args) &#123; Scanner scanner = new Scanner(System.in); int n = Integer.parseInt(scanner.nextLine()); String string=scanner.nextLine(); String[] str_arr = string.split(" "); int array[] = new int[str_arr.length]; for (int i = 0; i &lt; str_arr.length; i++) &#123; array[i] = Integer.parseInt(str_arr[i]); &#125; int max_sum =process_online(array, array.length); System.out.println(max_sum); &#125; //O(n^2) public static int getMaxSubSequenceSum(int array[], int n) &#123; int this_sum,max_sum; this_sum=0; max_sum=0; for (int i = 0; i &lt; n; i++) &#123; this_sum=0; for (int j = i; j &lt; n; j++) &#123; this_sum += array[j]; if (this_sum &gt; max_sum) &#123; max_sum = this_sum; &#125; &#125; &#125; return max_sum; &#125; //O(nlog(n)) public static int max_three(int a, int b, int c) &#123; int temp=a&gt;b?a:b; return temp &gt; c ? temp : c; &#125; public static int getCrossMax(int array[], int low, int mid, int hign) &#123; int left_sum = 0; int right_sum = 0; int left_max = 0; int right_max = 0; for (int i = mid; i &gt;= low; i--) &#123; left_sum += array[i]; if (left_sum &gt; left_max) &#123; left_max = left_sum; &#125; &#125; for (int i = mid + 1; i &lt;= hign; i++) &#123; right_sum += array[i]; if (right_sum &gt; right_max) &#123; right_max = right_sum; &#125; &#125; return left_max + right_max; &#125; public static int getMaxSubArraySum(int array[], int low, int hign) &#123; if (low == hign) &#123; return array[low]; &#125; int mid=low+(hign-low)/2; int left_sum = getMaxSubArraySum(array, low, mid); int right_sum = getMaxSubArraySum(array, mid + 1, hign); int cross_sum = getCrossMax(array, low, mid, hign); return max_three(left_sum, right_sum, cross_sum); &#125; //O(n) public static int process_online(int array[], int n) &#123; int this_sum,max_sum; this_sum=max_sum=0; for (int i = 0; i &lt; n; i++) &#123; this_sum += array[i]; if (this_sum &gt; max_sum) &#123; max_sum = this_sum; &#125; if (this_sum &lt;= 0) &#123; this_sum = 0; &#125; &#125; return max_sum; &#125;&#125;]]></content>
+      <categories>
+        <category>PTA</category>
+      </categories>
+      <tags>
+        <tag>process_online</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[最大子列和]]></title>
     <url>%2F2019%2F06%2F09%2F%E6%9C%80%E5%A4%A7%E5%AD%90%E5%88%97%E5%92%8C%2F</url>
     <content type="text"><![CDATA[O(n2)12345678910111213141516//O(n^2)public static int getMaxSubSequenceSum(int array[], int n) &#123; int this_sum,max_sum; this_sum=0; max_sum=0; for (int i = 0; i &lt; n; i++) &#123; this_sum=0; for (int j = i; j &lt; n; j++) &#123; this_sum += array[j]; if (this_sum &gt; max_sum) &#123; max_sum = this_sum; &#125; &#125; &#125; return max_sum;&#125; O(nlog n)12345678910111213141516171819202122232425262728293031323334353637//O(nlog(n))public static int max_three(int a, int b, int c) &#123; int temp=a&gt;b?a:b; return temp &gt; c ? temp : c;&#125;public static int getCrossMax(int array[], int low, int mid, int hign) &#123; int left_sum = 0; int right_sum = 0; int left_max = 0; int right_max = 0; for (int i = mid; i &gt;= low; i--) &#123; left_sum += array[i]; if (left_sum &gt; left_max) &#123; left_max = left_sum; &#125; &#125; for (int i = mid + 1; i &lt;= hign; i++) &#123; right_sum += array[i]; if (right_sum &gt; right_max) &#123; right_max = right_sum; &#125; &#125; return left_max + right_max;&#125;public static int getMaxSubArraySum(int array[], int low, int hign) &#123; if (low == hign) &#123; return array[low]; &#125; int mid=low+(hign-low)/2; int left_sum = getMaxSubArraySum(array, low, mid); int right_sum = getMaxSubArraySum(array, mid + 1, hign); int cross_sum = getCrossMax(array, low, mid, hign); return max_three(left_sum, right_sum, cross_sum);&#125; O(n)12345678910111213141516//O(n)public static int process_online(int array[], int n) &#123; int this_sum,max_sum; this_sum=max_sum=0; for (int i = 0; i &lt; n; i++) &#123; this_sum += array[i]; if (this_sum &gt; max_sum) &#123; max_sum = this_sum; &#125; if (this_sum &lt;= 0) &#123; this_sum = 0; &#125; &#125; return max_sum;&#125;]]></content>
@@ -120,9 +131,9 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>傅里叶级数</tag>
         <tag>磨皮美颜</tag>
         <tag>线性组合</tag>
+        <tag>傅里叶级数</tag>
       </tags>
   </entry>
   <entry>
@@ -393,8 +404,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>过滤器</tag>
         <tag>拦截器</tag>
+        <tag>过滤器</tag>
       </tags>
   </entry>
   <entry>
